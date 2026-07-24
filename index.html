@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1087,7 +1087,16 @@ footer.lesson-footer{
 
   <div id="vetFollowup"></div>
 
-  <div data-journal="j3"></div>
+  <div class="card" id="completionFrameCard" hidden>
+    <p class="eyebrow eyebrow--sage">One Quick Finish</p>
+    <div class="frame-fill">
+      <span>An observation is useful for this investigation when it</span>
+      <input type="text" class="j-input" id="completionFrameInput" data-state="evidenceCheck.completionFrame"
+             placeholder="…can be compared across the parent and puppy generations" maxlength="220">
+      <span>.</span>
+    </div>
+    <p class="save-flag" data-flag-for="completionFrameInput">✓ Saved</p>
+  </div>
 
   <div class="card card--coordinator" data-tts>
     <button type="button" class="tts-btn" data-tts-btn>🔊 Listen</button>
@@ -1130,7 +1139,6 @@ footer.lesson-footer{
     </div>
     <p class="helper" style="margin-bottom:14px;">Study the same kind of evidence on both parent dogs, then build a reference card for each one. You choose the labels — the shelter does not hand you a finished card.</p>
     <div id="parentViewer"></div>
-    <div data-journal="j4"></div>
     <div class="btn-row btn-row--right">
       <button type="button" class="btn btn--primary" data-dp1-advance="2">Continue to the Anchor Siblings →</button>
       <span class="gate-note" data-gate-note="dp1r1"></span>
@@ -1154,7 +1162,6 @@ footer.lesson-footer{
     </div>
     <p class="helper" style="margin-bottom:14px;">Willow and Scout are the two puppies visitors ask about most, because they look the least alike. Place the evidence you can observe, connect each observation to similar evidence in the parent generation, then compare.</p>
     <div id="contrastMap"></div>
-    <div data-journal="j5"></div>
     <div class="btn-row btn-row--right">
       <button type="button" class="btn btn--primary" data-dp1-advance="3">Continue to the Litter Pattern Test →</button>
       <span class="gate-note" data-gate-note="dp1r2"></span>
@@ -1169,7 +1176,7 @@ footer.lesson-footer{
       <p class="dialogue-quote" style="margin:0 0 6px;">Maybe Willow and Scout are unusual. What about the other puppies?</p>
       <p class="dialogue-quote" style="margin:0;">One comparison is not enough for the display. Check whether the pattern continues across the rest of the litter.<cite>Meg</cite></p>
     </div>
-    <p class="helper" style="margin-bottom:14px;">Record what you observe for Poppy, Milo, and Juniper, and decide whether similar evidence appears in the parent generation.</p>
+    <p class="helper" style="margin-bottom:14px;">Poppy, Milo, and Juniper's traits are already in the case file. For each puppy, tap the trait that also appears in the parent generation.</p>
     <div id="bridgeMatrix"></div>
     <div class="card card--cream" style="margin-top:18px;">
       <p class="eyebrow eyebrow--gold">Shelter Records</p>
@@ -1177,8 +1184,9 @@ footer.lesson-footer{
       <p class="helper" style="margin-bottom:12px;">The shelter keeps many true records, but only some belong on a genetics display. Decide for each one.</p>
       <div id="recordSort"></div>
     </div>
-    <div data-journal="j6"></div>
   </div>
+
+  <div data-journal="j4"></div>
 
   <!-- Own path overview -->
   <div id="ownOverview" hidden></div>
@@ -1234,7 +1242,14 @@ footer.lesson-footer{
     <div id="patternBoard"></div>
   </div>
 
-  <div data-journal="j7"></div>
+  <div class="card">
+    <p class="eyebrow eyebrow--sage">Case Journal · Combined Evidence</p>
+    <p class="journal__prompt" style="font-weight:700;color:var(--berry-dark);margin-bottom:10px;">What does the combined evidence show that neither team could show alone?</p>
+    <label class="visually-hidden" for="convergence1Response">Combined evidence finding</label>
+    <textarea id="convergence1Response" class="j-input" rows="4" data-state="convergence1.journalResponse"
+      placeholder="Together, the two reports show…"></textarea>
+    <p class="save-flag" data-flag-for="convergence1Response">✓ Saved</p>
+  </div>
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
@@ -1299,8 +1314,6 @@ footer.lesson-footer{
 
   <div id="dp2Workspace"></div>
 
-  <div data-journal="j8"></div>
-
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
     <button type="button" class="btn btn--primary" data-next="section-8-convergence2">Continue to Convergence →</button>
@@ -1359,8 +1372,6 @@ footer.lesson-footer{
     <div id="cerFrame"></div>
   </div>
 
-  <div data-journal="j9"></div>
-
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
     <button type="button" class="btn btn--primary" data-next="section-9-transfer-intro">Continue →</button>
@@ -1416,6 +1427,8 @@ footer.lesson-footer{
 
   <div id="transferCases"></div>
 
+  <div class="card" id="crossSpeciesFrame" hidden></div>
+
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
     <button type="button" class="btn btn--primary" data-next="section-11-verification">Continue to the Checklist →</button>
@@ -1435,7 +1448,6 @@ footer.lesson-footer{
         <p class="speaker-name">Shelter Veterinarian</p>
         <p class="dialogue-quote">I now have three evidence sets: puppies, plants, and a fictional human family.</p>
         <p class="dialogue-quote">I will not approve the display based on a checked box alone. For every statement you support, attach the evidence that earns that answer.</p>
-        <p class="dialogue-quote">If the evidence cannot answer a question, say so. That is a scientific finding too.</p>
       </div>
     </div>
   </div>
@@ -1447,20 +1459,18 @@ footer.lesson-footer{
 
   <div class="card">
     <p class="eyebrow eyebrow--gold">Veterinary Sign-Off Checklist</p>
-    <h3 class="title-block">Does your evidence support each statement?</h3>
+    <h3 class="title-block">Which evidence supports each statement?</h3>
     <div id="verifyChecklist"></div>
   </div>
 
   <div class="card">
-    <p class="eyebrow eyebrow--sage">Keep · Strengthen · Limit</p>
+    <p class="eyebrow eyebrow--sage">Sign-Off Summary</p>
     <h3 class="title-block">The final review before approval</h3>
     <div class="card card--vet card--flat" style="margin:0 0 16px;border-left:4px solid var(--sage-dark);">
       <p class="dialogue-quote" style="margin:0;">A careful explanation says what the evidence shows — and stops where the evidence stops.<cite>Shelter Veterinarian</cite></p>
     </div>
     <div id="kslReview"></div>
   </div>
-
-  <div data-journal="j10"></div>
 
   <div class="card" style="text-align:center;">
     <p class="eyebrow eyebrow--sage">Verification Status</p>
@@ -1548,14 +1558,14 @@ footer.lesson-footer{
   <div class="card">
     <p class="eyebrow eyebrow--gold">Two Drafts From the Shelter Suggestion Box</p>
     <h3 class="title-block">Judge each one before you write your own</h3>
-    <p class="helper" style="margin-bottom:14px;">Judge each one on accuracy, clarity, evidence, and fit for a shelter audience.</p>
+    <p class="helper" style="margin-bottom:14px;">Choose the stronger draft, then identify one problem in the weaker one.</p>
     <div id="sampleCompare"></div>
   </div>
 
   <div class="card">
     <p class="eyebrow eyebrow--sage">Layer 1</p>
-    <h3 class="title-block">What Genetics Investigators Found</h3>
-    <p class="helper" style="margin-bottom:12px;">Write a short scientific explanation based on your repaired and verified work.</p>
+    <h3 class="title-block">Your Approved Scientific Explanation</h3>
+    <p class="helper" style="margin-bottom:12px;">This is the explanation you built and verified earlier. Make any final edits here.</p>
     <label class="visually-hidden" for="sciExplanation">Scientific explanation</label>
     <textarea id="sciExplanation" class="j-input" data-state="audience.scientificExplanation" rows="4"
       placeholder="Our investigation found that…"></textarea>
@@ -1569,8 +1579,6 @@ footer.lesson-footer{
     <div id="audienceChecklist"></div>
     <div id="visitorFrame" style="margin-top:16px;"></div>
   </div>
-
-  <div data-journal="j11"></div>
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
@@ -1599,7 +1607,7 @@ footer.lesson-footer{
     <div class="card">
       <p class="eyebrow eyebrow--gold">Step 1 · Puppy Spotlight</p>
       <h3 class="title-block">Feature one puppy</h3>
-      <p class="helper" style="margin-bottom:12px;">A featured puppy gives visitors a concrete example of the broader family pattern. Choose a puppy, then choose two or three inherited physical traits and the family evidence that supports them.</p>
+      <p class="helper" style="margin-bottom:12px;">A featured puppy gives visitors a concrete example of the broader family pattern. Choose a puppy, then choose two inherited physical traits and the family evidence that supports them.</p>
       <div id="spotlightPicker"></div>
     </div>
 
@@ -1660,9 +1668,7 @@ footer.lesson-footer{
     <div id="wallAnswerPicker"></div>
   </div>
 
-  <div data-journal="j12"></div>
-
-  <div class="card">
+  <div class="card" id="caseCloseCard">
     <p class="eyebrow eyebrow--sage">Case Close Recommendation</p>
     <p class="dialogue-quote" style="margin-bottom:12px;">Before the doors open, what should every staff member understand about this puppy family?<cite>Meg</cite></p>
     <div id="caseCloseFrame"></div>
@@ -1699,7 +1705,7 @@ footer.lesson-footer{
 
   <div class="card">
     <p class="eyebrow">What You Did</p>
-    <p class="helper" style="margin-bottom:0;">You observed the family before hearing the claims, investigated two evidence questions, repaired an inaccurate explanation, checked the pattern in other living things, selected the strongest evidence, and prepared the shelter's public display.</p>
+    <p class="helper" style="margin-bottom:0;">You investigated visible patterns in a puppy family, combined evidence from two investigation teams, corrected an inaccurate explanation, checked the pattern in plants and a fictional human family, and prepared an evidence-based shelter display.</p>
   </div>
 
   <div class="card" style="text-align:center;">
@@ -1806,27 +1812,22 @@ const PUPPY_KEYS   = ['willow', 'scout', 'poppy', 'milo', 'juniper'];
 const ALL_DOG_KEYS = PARENT_KEYS.concat(PUPPY_KEYS);
 const BRIDGE_KEYS  = ['poppy', 'milo', 'juniper'];
 
-/* ---------- A3. SHELTER RECORDS ---------- */
+/* ---------- A3. SHELTER RECORDS (5 representative records, not all 10) ---------- */
 const SHELTER_RECORDS = {
   willow: [
-    { text: 'White paws and a small chest patch were recorded at intake.', type: 'physical-trait', relevant: true },
-    { text: 'Willow learned to sit for a treat.', type: 'learned', relevant: false }
-  ],
-  scout: [
-    { text: 'Scout\u2019s coat was recorded as smooth during the intake exam.', type: 'physical-trait', relevant: true },
-    { text: 'Scout is wearing a blue shelter collar.', type: 'shelter-added', relevant: false }
-  ],
-  poppy: [
-    { text: 'Poppy\u2019s fur remained wavy after grooming.', type: 'physical-trait', relevant: true },
-    { text: 'Poppy has mud on one front paw after outdoor play.', type: 'temporary', relevant: false }
-  ],
-  milo: [
-    { text: 'Milo\u2019s ears were recorded as mostly upright at intake.', type: 'physical-trait', relevant: true },
-    { text: 'Milo responds when a staff member calls his name.', type: 'learned', relevant: false }
+    { text: 'White paws and a small chest patch were recorded at intake.', type: 'physical-trait', relevant: true }
   ],
   juniper: [
-    { text: 'Juniper\u2019s facial blaze was documented at intake.', type: 'physical-trait', relevant: true },
-    { text: 'Juniper has a small healed scratch on one leg.', type: 'acquired', relevant: false }
+    { text: 'Juniper\u2019s facial blaze was documented at intake.', type: 'physical-trait', relevant: true }
+  ],
+  milo: [
+    { text: 'Milo responds when a staff member calls his name.', type: 'learned', relevant: false }
+  ],
+  poppy: [
+    { text: 'Poppy has mud on one front paw after outdoor play.', type: 'temporary', relevant: false }
+  ],
+  scout: [
+    { text: 'Staff predict Scout will be the most playful puppy at the adoption event.', type: 'prediction', relevant: false }
   ]
 };
 
@@ -1835,7 +1836,8 @@ const RECORD_TYPE_LABEL = {
   'learned': 'Learned behavior',
   'temporary': 'Temporary characteristic',
   'shelter-added': 'Added at the shelter',
-  'acquired': 'Acquired during life'
+  'acquired': 'Acquired during life',
+  'prediction': 'Unsupported prediction'
 };
 
 /* ---------- A4. PREPARED TRAIT LABELS ---------- */
@@ -1959,29 +1961,19 @@ const BOARD_ZONES = [
   { id:'notuseful',title:'Not Useful for This Question',hint:'Real observations that do not give evidence about inherited traits.',min:0 }
 ];
 
-/* ---------- A10. CONVERGENCE 2 REPAIR TILES ---------- */
+/* ---------- A10. CONVERGENCE 2 REPAIR TILES (4 statements, not 6) ---------- */
 const REPAIR_TILES = [
   { id:'t1', text:'The puppies inherited genetic information from their parents.', best:'keep',
     fb:'Check it against the veterinarian\u2019s briefing and your own evidence check. Does anything you found contradict this?' },
   { id:'t2', text:'Each puppy copied some traits from one parent and the rest from the other.', best:'revise',
-    fb:'Look at your Parent Reference Panel. For any one trait, does only one parent ever show a similar trait — or can more than one?' },
+    fb:'Look at your Parent Reference Panel. For any one trait, does only one parent ever show a similar trait — or can more than one?',
+    suggestion:'Each puppy shows a mix of traits found across the family, not traits split evenly one per parent.' },
   { id:'t3', text:'Puppies from the same parents should look almost exactly alike.', best:'remove',
     fb:'Compare Willow\u2019s and Scout\u2019s complete trait records side by side. How many categories are the same?' },
-  { id:'t4', text:'Willow and Scout look different, but both show traits observed in the parent generation.', best:'keep',
-    fb:'Check this against your contrast map. Does every trait you linked actually connect to a parent?' },
-  { id:'t5', text:'The shelter environment caused the puppies\u2019 coat colors and ear shapes.', best:'remove',
-    fb:'When were coat color and ear shape first recorded — before or after the puppies arrived at the shelter?' },
   { id:'t6', text:'Each puppy shows its own combination of family traits.', best:'keep',
     fb:'Compare the complete trait rows for Poppy, Milo, and Juniper. Do any two rows match in every category?' }
 ];
 
-const REPAIR_ISSUES = [
-  { id:'i1', text:'It says one parent alone caused a trait.' },
-  { id:'i2', text:'It says appearance can predict behavior or ability.' },
-  { id:'i3', text:'It says offspring are copies of a parent.' },
-  { id:'i4', text:'It says the environment caused an inherited physical trait.' },
-  { id:'i5', text:'It leaves out that siblings can differ.' }
-];
 
 /* ---------- A11. TRANSFER CASES ---------- */
 const TRANSFER_CASES = {
@@ -1999,9 +1991,7 @@ const TRANSFER_CASES = {
         fb:'Markings appear in some offspring and not others — a difference within one group of offspring.' }
     ],
     prompts:[
-      { key:'similar', label:'One parent–offspring similarity you can observe', ph:'Several offspring plants have…' },
-      { key:'difference', label:'One difference among the offspring', ph:'The offspring are not all the same because…' },
-      { key:'notcopy', label:'Evidence that the offspring are not exact copies', ph:'No offspring plant is an exact copy because…' }
+      { key:'finding', label:'What did you find?', ph:'The plant offspring share traits with the parent plant, but…' }
     ]
   },
   human: {
@@ -2018,8 +2008,7 @@ const TRANSFER_CASES = {
         fb:'The same eye colors reappear, but in different combinations with other features.' }
     ],
     prompts:[
-      { key:'similar', label:'One similarity you can observe across generations', ph:'Across this family, I can observe…' },
-      { key:'difference', label:'One difference within the younger generation', ph:'The children are not all the same because…' }
+      { key:'finding', label:'What did you find?', ph:'The fictional family shows similarities and differences, but appearance cannot show…' }
     ],
     reject:{
       claim:'The two family members with curly hair will both be good at the same school subjects.',
@@ -2036,53 +2025,37 @@ const TRANSFER_CASES = {
   }
 };
 
-/* ---------- A12. VERIFICATION ---------- */
+/* ---------- A12. VERIFICATION (3 claims, not 5; no separate yes/no step) ---------- */
 const VERIFY_ITEMS = [
   { id:'v1', text:'Offspring share observable traits with their parents.' },
-  { id:'v2', text:'Offspring are not exact copies of their parents.' },
-  { id:'v3', text:'Offspring from the same parents may differ from each other.' },
-  { id:'v4', text:'Family traits may appear in different combinations.' },
-  { id:'v5', text:'Appearance evidence does not support claims about personality, behavior, or ability.', invert:true,
-    note:'For this one, "supported" means your evidence supports the limit itself.' }
+  { id:'v2', text:'Offspring and siblings are not exact copies of one another.' },
+  { id:'v3', text:'Appearance cannot establish behavior, ability, health, or family relationships.' }
 ];
 const VERIFY_SOURCES = [
   { id:'puppy', label:'Puppy family evidence' },
   { id:'plant', label:'Plant family evidence' },
   { id:'human', label:'Human family evidence' }
 ];
-const LIMIT_OPTIONS = [
-  { id:'l1', text:'The exact personality or behavior a puppy will have.' },
-  { id:'l2', text:'Which visible parent alone caused each trait.' },
-  { id:'l3', text:'That all siblings must look alike.' },
-  { id:'l4', text:'Family relationships based only on visible appearance.' }
-];
 
-/* ---------- A13. PUBLIC COMMUNICATION SAMPLES ---------- */
+/* ---------- A13. PUBLIC COMMUNICATION SAMPLES (pick stronger + pick one problem, not 4 criteria x2) ---------- */
 const SAMPLE_EXPLANATIONS = [
   { id:'sA', label:'Draft A',
     text:'These puppies are half of each parent. Willow got her fur from her mom and her ears from her dad, so she is the calm one. Scout is the opposite, so he will be the energetic one.',
-    strong:false,
-    criteria:{ accuracy:false, clarity:true, evidence:false, audience:false },
-    fb:'This draft sounds friendly and clear, but it makes two claims your evidence cannot support: that each trait came from one specific parent, and that appearance predicts personality.' },
+    strong:false },
   { id:'sB', label:'Draft B',
     text:'These five puppies came from the same two parent dogs. Each puppy shows traits we can also see in the parent dogs \u2014 things like coat color, markings, fur, and ears. But every puppy has its own combination, so no two puppies look the same and no puppy is an exact copy of a parent.',
-    strong:true,
-    criteria:{ accuracy:true, clarity:true, evidence:true, audience:true },
-    fb:'This draft stays inside the evidence. It explains resemblance and difference without claiming one parent caused a trait or predicting behavior.' }
+    strong:true }
 ];
-const SAMPLE_CRITERIA = [
-  { id:'accuracy', label:'Scientifically accurate' },
-  { id:'clarity',  label:'Clear and easy to read' },
-  { id:'evidence', label:'Uses actual evidence' },
-  { id:'audience', label:'Fits a shelter audience' }
+const SAMPLE_PROBLEMS = [
+  { id:'p1', text:'Assigns traits to one specific parent' },
+  { id:'p2', text:'Predicts personality or behavior' },
+  { id:'p3', text:'Lacks evidence' },
+  { id:'p4', text:'Incorrectly suggests exact copies' }
 ];
 const AUDIENCE_CHECKLIST = [
-  { id:'a1', text:'Explains why the puppies resemble their parents.' },
-  { id:'a2', text:'Explains why the puppies differ from one another.' },
-  { id:'a3', text:'Uses actual evidence from the investigation.' },
-  { id:'a4', text:'Avoids personality, behavior, breed, or one-parent-per-trait claims.' },
-  { id:'a5', text:'Can be understood by shelter visitors.' },
-  { id:'a6', text:'Keeps the scientific meaning intact.' }
+  { id:'a1', text:'Uses family evidence.' },
+  { id:'a2', text:'Explains both similarity and difference.' },
+  { id:'a3', text:'Avoids unsupported predictions.' }
 ];
 
 /* ---------- A14. EVIDENCE RANKING ---------- */
@@ -2126,37 +2099,20 @@ const GLOSSARY = [
   { term:'Temporary characteristic', def:'Something that is true right now but will change, like mud on a paw or a shelter collar.' }
 ];
 
-/* ---------- A17. JOURNAL PROMPTS ---------- */
+/* ---------- A17. JOURNAL PROMPTS ----------
+   3 prompted entries here + 4 dedicated-field artifacts (the Section 7
+   visitor answer, the Section 8 Claim-Evidence-Reasoning explanation, the
+   Section 10 cross-species two-part frame, and the Section 15 structured
+   final visitor response) = the 7 core written artifacts called for in the
+   streamlined lesson. */
 const JOURNAL_PROMPTS = [
   { key:'j1',  n:1,  section:'section-1-family-reveal',        label:'Case Journal · Entry 1',
-    prompt:'What is one pattern you notice across the puppy family? Describe at least one similarity and one difference that helped you notice it.' },
+    prompt:'What is one similarity and one difference you notice in this puppy family?' },
   { key:'j2',  n:2,  section:'section-2-shelter-problem',      label:'Case Journal · Entry 2',
     prompt:'Choose one visitor question that was difficult to place. What evidence would you need before you could answer it confidently?' },
-  { key:'j3',  n:3,  section:'section-3-briefing-dp1',         label:'Case Journal · Entry 3',
-    prompt:'What makes an observation useful for an inheritance investigation?' },
-  { key:'j4',  n:4,  section:'section-4-dp1-investigation',    label:'Case Journal · Entry 4',
-    prompt:'Which traits in the parent dogs may help you recognize patterns in the puppies? Explain why those traits could be useful evidence.' },
-  { key:'j5',  n:5,  section:'section-4-dp1-investigation',    label:'Case Journal · Entry 5',
-    prompt:'How can Willow and Scout look different while both still showing traits observed in their family? Use evidence from both puppies.' },
-  { key:'j6',  n:6,  section:'section-4-dp1-investigation',    label:'Case Journal · Entry 6',
-    prompt:'What pattern continues when you examine Poppy, Milo, and Juniper? Use evidence from more than one puppy.' },
-  { key:'j7',  n:7,  section:'section-5-overview-convergence1',label:'Case Journal · Entry 7',
-    prompt:'Which observations help explain patterns between the parents and puppies, and which observations do not provide evidence about inherited traits?', big:true },
-  { key:'j8',  n:8,  section:'section-7-dp2-investigation',    label:'Case Journal · Entry 8', dynamic:'dp2',
-    prompt:'' },
-  { key:'j9',  n:9,  section:'section-8-convergence2',         label:'Case Journal · Entry 9',
-    prompt:'What was inaccurate or incomplete in the shelter\u2019s original explanation? How did evidence from both investigations help you improve it?', big:true },
-  { key:'j10', n:10, section:'section-11-verification',        label:'Case Journal · Entry 10',
-    prompt:'Which part of your puppy explanation was supported by the plant and human evidence? What can the evidence still not tell you?', big:true },
-  { key:'j11', n:11, section:'section-13-public-communication',label:'Case Journal · Entry 11',
-    prompt:'How did you make your explanation easier for shelter visitors to understand without changing the science?' },
-  { key:'j12', n:12, section:'section-15-wall-case-close',      label:'Case Journal · Entry 12',
-    prompt:'Choose one visitor question your display can answer. What would you tell the visitor, and which evidence on your board supports your answer?', big:true }
+  { key:'j4',  n:3,  section:'section-4-dp1-investigation',    label:'Case Journal · Entry 3',
+    prompt:'What pattern do you see when you compare the parents with all five puppies?', big:true }
 ];
-const DP2_JOURNAL_PROMPT = {
-  sibling:'How does the evidence explain why Willow and Scout can be siblings even though they look different? Include a similarity, a difference, and the family pattern they both show.',
-  parentcopy:'How does your selected puppy show family traits without being an exact copy of either parent? Use at least three traits in your explanation.'
-};
 
 /* ---------- A18. SECTIONS ---------- */
 const SECTION_ORDER = [
@@ -2227,9 +2183,10 @@ function freshState(){
     opening:{ portraitsOpened:[], preparedPins:[], originalNoticePin:'', journalResponse:'' },
 
     visitorWall:{ initialPlacements:{}, initialSubmittedAt:null, finalPlacements:{}, changes:[],
-                  difficultQuestion:null, difficultQuestionResponse:'', finalSelectedQuestion:null, finalResponse:'' },
+                  difficultQuestion:null, difficultQuestionResponse:'', finalSelectedQuestion:null, finalResponse:'',
+                  finalEvidenceId:null },
 
-    evidenceCheck:{ responses:{}, attempts:{}, journalResponse:'' },
+    evidenceCheck:{ responses:{}, attempts:{}, journalResponse:'', completionFrame:'' },
 
     dp1:{ round:1, parentReference:{}, parentReferenceAttempts:[], willowScout:{ tiles:{}, links:{}, compareA:'', compareB:'' },
           bridgeMatrix:{}, shelterRecordSelections:{}, ownPathOverview:null, otherPathOverviewViewed:false, journal:{} },
@@ -2243,13 +2200,15 @@ function freshState(){
                    journalResponse:'' },
 
     transfer:{ order:[], plant:{ traits:{}, prompts:{} }, human:{ traits:{}, prompts:{}, reject:null },
-               verificationChecklist:{}, keep:'', strengthen:'', limit:[], journalResponse:'', evidenceSealEarned:false },
+               verificationChecklist:{}, keep:'', strengthen:'', limit:[], journalResponse:'', evidenceSealEarned:false,
+               crossSpeciesFinding:{ a:'', b:'' }, signoffFrame:{ a:'', b:'' } },
 
     evidenceLibrary:[],
 
     ranking:{ familySimilarity:{ rounds:[], winner:null, reason:null, more:'', shows:'' },
               siblingVariation:{ rounds:[], winner:null, reason:null, more:'', shows:'' },
-              traitCombinations:{ rounds:[], winner:null, reason:null, more:'', shows:'' } },
+              traitCombinations:{ rounds:[], winner:null, reason:null, more:'', shows:'' },
+              overallReason:'' },
 
     audience:{ sampleComparison:{}, checklist:{}, scientificExplanation:'', visitorExplanation:'',
                visitorFrame:{ a:'', b:'', c:'' }, journalResponse:'' },
@@ -2257,7 +2216,7 @@ function freshState(){
     display:{ template:null, rankedEvidence:{}, featuredPuppy:null, spotlightTraits:[], spotlightEvidence:[],
               spotlightHeading:'', generated:false, generatedAt:null, boardData:null, renderedSnapshotHtml:'' },
 
-    caseClose:{ recommendation:{ a:'', b:'', c:'', d:'' }, acknowledged:false },
+    caseClose:{ recommendation:{ a:'', b:'', c:'', d:'', auto:'', edited:'' }, acknowledged:false },
 
     journalEntries:{}, eventLog:[], exportName:''
   };
@@ -2545,15 +2504,15 @@ const GATES = {
   },
   'section-3-briefing-dp1': function(){
     if (Object.keys(state.evidenceCheck.responses).length < EVIDENCE_CHECK.length) return 'Decide about all four observations in the evidence check.';
-    if (!journalDone('j3')) return 'Answer Journal Entry 3 before continuing.';
+    if (!String(state.evidenceCheck.completionFrame).trim()) return 'Finish the sentence about what makes an observation useful.';
     if (!state.decisions.dp1Path) return 'Choose an evidence investigation to begin.';
     return '';
   },
   'section-4-dp1-investigation': function(){
     if (!dp1Round1Done()) return 'Inspect both parent dogs and finish both reference cards.';
-    if (!dp1Round2Done()) return 'Finish the Willow–Scout contrast map, including both comparison sentences.';
-    if (!dp1Round3Done()) return 'Complete the matrix row for every puppy and sort all ten shelter records.';
-    if (!journalDone('j4') || !journalDone('j5') || !journalDone('j6')) return 'Answer Journal Entries 4, 5, and 6 before continuing.';
+    if (!dp1Round2Done()) return 'Finish the Willow–Scout contrast map, including the comparison sentence.';
+    if (!dp1Round3Done()) return 'Complete the matrix row for every puppy and sort the shelter records.';
+    if (!journalDone('j4')) return 'Answer Journal Entry 3 before continuing.';
     return '';
   },
   'section-5-overview-convergence1': function(){
@@ -2561,7 +2520,7 @@ const GATES = {
     const m = boardMinimums();
     if (!m.ok) return m.msg;
     if (!state.convergence1.reviewed) return 'Review your evidence board before continuing.';
-    if (!journalDone('j7')) return 'Answer Journal Entry 7 before continuing.';
+    if (!String(state.convergence1.journalResponse).trim()) return 'Answer the combined-evidence question before continuing.';
     return '';
   },
   'section-6-dp2-choice': function(){
@@ -2571,7 +2530,6 @@ const GATES = {
   'section-7-dp2-investigation': function(){
     const r = dp2Done();
     if (r) return r;
-    if (!journalDone('j8')) return 'Answer Journal Entry 8 before continuing.';
     return '';
   },
   'section-8-convergence2': function(){
@@ -2581,7 +2539,6 @@ const GATES = {
     const f = state.convergence2.finalExplanation;
     if (!String(f.evidence).trim() || !String(f.reasoning).trim()) return 'Complete the Evidence and Reasoning parts of your explanation.';
     if (attachedEvidenceCount() < 3) return 'Attach evidence for a similarity, a sibling difference, and a different combination.';
-    if (!journalDone('j9')) return 'Answer Journal Entry 9 before continuing.';
     return '';
   },
   'section-9-transfer-intro': function(){
@@ -2591,36 +2548,35 @@ const GATES = {
   'section-10-transfer-cases': function(){
     if (!transferCaseDone('plant')) return 'Finish both transfer cases to verify the explanation — the plant case is not complete.';
     if (!transferCaseDone('human')) return 'Finish both transfer cases to verify the explanation — the human case is not complete.';
+    const cf = state.transfer.crossSpeciesFinding;
+    if (!String(cf.a).trim() || !String(cf.b).trim()) return 'Complete the cross-species finding before continuing.';
     return '';
   },
   'section-11-verification': function(){
     const done = VERIFY_ITEMS.filter(function(v){
       const r = state.transfer.verificationChecklist[v.id];
-      return r && r.answer && (r.answer === 'no' || (r.sources && r.sources.length));
+      return r && r.sources && r.sources.length;
     }).length;
-    if (done < VERIFY_ITEMS.length) return 'Answer every checklist statement and attach evidence where you say it is supported.';
-    if (!String(state.transfer.keep).trim()) return 'Write what your explanation should keep.';
-    if (!String(state.transfer.strengthen).trim()) return 'Complete the Strengthen sentence.';
-    if (!state.transfer.limit.length) return 'Choose at least one limit your evidence cannot establish.';
-    if (!journalDone('j10')) return 'Answer Journal Entry 10 before continuing.';
+    if (done < VERIFY_ITEMS.length) return 'Attach supporting evidence to all three claims.';
+    const sf = state.transfer.signoffFrame;
+    if (!String(sf.a).trim() || !String(sf.b).trim()) return 'Complete both parts of the sign-off summary.';
     return '';
   },
   'section-12-evidence-shortlist': function(){
     for (let i = 0; i < RANK_CATEGORIES.length; i++){
       const c = RANK_CATEGORIES[i], r = state.ranking[c.id];
-      if (!r.winner) return 'Finish the ' + c.label + ' comparison.';
+      if (!r.winner) return 'Finish the ' + c.label + ' selection.';
       if (!r.reason) return 'Choose a reason for your ' + c.label + ' selection.';
-      if (!String(r.shows).trim()) return 'Finish the justification sentence for ' + c.label + '.';
     }
+    if (!String(state.ranking.overallReason).trim()) return 'Finish the sentence explaining your three choices.';
     return '';
   },
   'section-13-public-communication': function(){
-    if (Object.keys(state.audience.sampleComparison).length < SAMPLE_EXPLANATIONS.length) return 'Judge both sample explanations.';
-    if (!String(state.audience.scientificExplanation).trim()) return 'Write your scientific explanation (Layer 1).';
+    if (!state.audience.sampleComparison.strongerPick || !state.audience.sampleComparison.problemPick) return 'Choose the stronger draft and identify one problem in the weaker one.';
+    if (!String(state.audience.scientificExplanation).trim()) return 'Review your approved scientific explanation.';
     const vf = state.audience.visitorFrame;
-    if (!String(vf.a).trim() || !String(vf.b).trim() || !String(vf.c).trim()) return 'Complete all three parts of the visitor-friendly frame.';
-    if (Object.keys(state.audience.checklist).length < AUDIENCE_CHECKLIST.length) return 'Work through every item in the audience checklist.';
-    if (!journalDone('j11')) return 'Answer Journal Entry 11 before continuing.';
+    if (!String(vf.a).trim() || !String(vf.b).trim()) return 'Complete the visitor-friendly frame.';
+    if (Object.keys(state.audience.checklist).length < AUDIENCE_CHECKLIST.length) return 'Work through the audience checklist.';
     return '';
   },
   'section-14-display-builder': function(){
@@ -2629,10 +2585,10 @@ const GATES = {
   },
   'section-15-wall-case-close': function(){
     if (!state.visitorWall.finalSelectedQuestion) return 'Choose one visitor question your display can answer.';
-    if (!journalDone('j12')) return 'Answer Journal Entry 12 before continuing.';
+    if (!String(state.visitorWall.finalResponse).trim()) return 'Write what you would tell the visitor.';
+    if (!state.visitorWall.finalEvidenceId) return 'Select the evidence card that supports your answer.';
     const r = state.caseClose.recommendation;
-    if (!String(r.a).trim() || !String(r.b).trim() || !String(r.c).trim() || !String(r.d).trim())
-      return 'Complete all four parts of your Case Close Recommendation.';
+    if (!String(r.edited || r.auto).trim()) return 'Review the generated Case Close Recommendation.';
     return '';
   }
 };
@@ -2721,10 +2677,6 @@ function bindTextInputs(root){
 
 /* ---------- B13. JOURNAL RENDERING ---------- */
 function journalPromptText(p){
-  if (p.dynamic === 'dp2'){
-    const q = state.decisions.dp2Question;
-    return q ? DP2_JOURNAL_PROMPT[q] : 'Explain what your investigation showed. Use evidence.';
-  }
   return p.prompt;
 }
 function renderJournals(){
@@ -3173,6 +3125,8 @@ function renderVetFollowup(){
     '<p class="dialogue-quote">Those traits are influenced by <strong>genetic information</strong> passed from one <strong>generation</strong> to the next. Now we need evidence showing what that looks like in this family.</p>' +
     '</div></div></div>';
   mountDeclaredAssets();
+  const frame = el('completionFrameCard');
+  if (frame) frame.hidden = false;
 }
 
 function renderDp1Choices(){
@@ -3466,7 +3420,7 @@ function contrastCompareDone(){
 }
 function dp1Round2Done(){ return contrastObserveDone() && contrastConnectDone() && contrastCompareDone(); }
 
-/* ---------- D4. ROUND 3 — THREE-PUPPY MATRIX ---------- */
+/* ---------- D4. ROUND 3 — THREE-PUPPY MATRIX (prefilled; one tap per puppy) ---------- */
 function renderBridgeMatrix(){
   const mount = el('bridgeMatrix');
   if (!mount) return;
@@ -3475,60 +3429,38 @@ function renderBridgeMatrix(){
 
   let html = '<div class="table-scroll"><table class="data"><thead><tr><th>Puppy</th>' +
     cats.map(function(c){ return '<th>' + esc(CATEGORY_LABEL[c]) + '</th>'; }).join('') +
-    '<th>Similar family evidence located?</th></tr></thead><tbody>';
+    '<th>Tap the trait that also appears in the parent generation</th></tr></thead><tbody>';
 
   BRIDGE_KEYS.forEach(function(dk){
-    const row = state.dp1.bridgeMatrix[dk] || { cats:{}, located:null };
+    const row = state.dp1.bridgeMatrix[dk] || { confirmed:null };
     html += '<tr><th scope="row"><div style="width:78px;">' +
       assetMarkup('dogs.case.' + dk, 'Case portrait of ' + dogName(dk), 'asset--portrait') +
       '</div>' + esc(dogName(dk)) + '</th>';
+    const traitLabelsForRow = [];
     cats.forEach(function(c){
-      const chosen = (row.cats && row.cats[c]) || [];
-      const done = matrixCatDone(dk, c);
-      html += '<td class="' + (done ? 'is-done' : '') + '"><div class="chip-set">' +
-        labelsForCategory(c).map(function(l){
-          const on = chosen.indexOf(l.id) > -1;
-          return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-mx-dog="' + dk + '" data-mx-cat="' + c + '" data-mx-label="' + l.id + '" aria-pressed="' + on + '">' + esc(l.text) + '</button>';
-        }).join('') + '</div></td>';
+      const correct = correctLabelsFor(dk, c);
+      traitLabelsForRow.push.apply(traitLabelsForRow, correct);
+      html += '<td>' + correct.map(labelText).join(', ') + '</td>';
     });
-    const located = row.located;
-    html += '<td class="' + (located === 'yes' ? 'is-done' : '') + '"><div class="chip-set">' +
-      '<button type="button" class="chip' + (located === 'yes' ? ' is-selected' : '') + '" data-mx-loc="' + dk + '" data-mx-val="yes" aria-pressed="' + (located === 'yes') + '">Yes</button>' +
-      '<button type="button" class="chip' + (located === 'no' ? ' is-selected' : '') + '" data-mx-loc="' + dk + '" data-mx-val="no" aria-pressed="' + (located === 'no') + '">No</button>' +
-      '</div>' + (located === 'no' ? '<p class="helper" style="margin-top:7px;color:var(--coral-dark);">Check the Parent Reference Panel again — each of these traits does appear somewhere in the parent generation.</p>' : '') +
-      '</td></tr>';
+    html += '<td><div class="chip-set">' +
+      traitLabelsForRow.map(function(lid){
+        const on = row.confirmed === lid;
+        return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-mx-dog="' + dk + '" data-mx-confirm="' + lid + '" aria-pressed="' + on + '">' + esc(labelText(lid)) + '</button>';
+      }).join('') + '</div></td></tr>';
   });
   html += '</tbody></table></div>';
   mount.innerHTML = html;
 }
-function matrixCatDone(dk, c){
-  const row = state.dp1.bridgeMatrix[dk];
-  const chosen = (row && row.cats && row.cats[c]) || [];
-  const correct = correctLabelsFor(dk, c);
-  return chosen.length === correct.length && correct.every(function(x){ return chosen.indexOf(x) > -1; });
-}
-function toggleMatrix(dk, c, lid){
-  if (!state.dp1.bridgeMatrix[dk]) state.dp1.bridgeMatrix[dk] = { cats:{}, located:null };
-  const row = state.dp1.bridgeMatrix[dk];
-  if (!row.cats[c]) row.cats[c] = [];
-  const arr = row.cats[c], i = arr.indexOf(lid);
-  if (i > -1) arr.splice(i, 1);
-  else if (dogHasLabel(dk, lid)) arr.push(lid);
-  else { toast('Look again at ' + dogName(dk) + '\u2019s portrait.'); return; }
-  logEvent('matrix-cell', { dog:dk, cat:c, label:lid });
-  renderBridgeMatrix(); saveState(); updateGates();
-}
-function setMatrixLocated(dk, val){
-  if (!state.dp1.bridgeMatrix[dk]) state.dp1.bridgeMatrix[dk] = { cats:{}, located:null };
-  state.dp1.bridgeMatrix[dk].located = val;
-  logEvent('matrix-located', { dog:dk, val:val });
+function confirmMatrixTrait(dk, lid){
+  if (!state.dp1.bridgeMatrix[dk]) state.dp1.bridgeMatrix[dk] = {};
+  state.dp1.bridgeMatrix[dk].confirmed = lid;
+  logEvent('matrix-confirm', { dog:dk, label:lid });
   renderBridgeMatrix(); saveState(); updateGates();
 }
 function dp1Round3Done(){
-  const pid = state.decisions.dp1Path || 'coat';
   const matrixOk = BRIDGE_KEYS.every(function(dk){
     const row = state.dp1.bridgeMatrix[dk];
-    return row && row.located === 'yes' && pathCats(pid).every(function(c){ return matrixCatDone(dk, c); });
+    return row && !!row.confirmed;
   });
   return matrixOk && Object.keys(state.dp1.shelterRecordSelections).length >= recordItems().length;
 }
@@ -3625,7 +3557,7 @@ function pathOverviewHtml(pid, opts){
       '</strong>, but both show family patterns because <strong>' + esc(ws.compareB || '—') + '</strong>.</p></div>';
     h += '<p class="align-label">Whole-Litter Pattern</p>' +
       '<div class="card card--cream card--flat" style="margin:0;"><p class="narrative-text">' +
-      esc(state.journalEntries.j6 || 'Not yet recorded.') + '</p></div>';
+      esc(state.journalEntries.j4 || 'Not yet recorded.') + '</p></div>';
     const useful = recordItems().filter(function(r){ return state.dp1.shelterRecordSelections[r.id] === 'useful'; });
     const not    = recordItems().filter(function(r){ return state.dp1.shelterRecordSelections[r.id] === 'notuseful'; });
     h += '<p class="align-label">Shelter Records You Sorted</p><div class="board__cols">' +
@@ -3660,22 +3592,28 @@ function renderConvergence1Reports(){
 }
 
 /* ---------- D7. CONVERGENCE 1 — PATTERN BOARD ---------- */
+/* Curated pool of ~12 strategically chosen items (not an exhaustive cross-
+   product) — 3 per scientific category plus the 3 not-useful shelter
+   records. Text is still computed from the same trait-test logic as
+   everywhere else, so correctness can never drift from DOG_DATA. */
+const SIMILARITY_PICKS = [
+  { dog:'willow', label:'mark-paws' },
+  { dog:'scout',  label:'ears-floppy' },
+  { dog:'poppy',  label:'fur-wavy' }
+];
 function evidenceItems(){
   const out = [];
-  /* Similarity items — one per puppy per dataset, phrased as family evidence. */
-  PUPPY_KEYS.forEach(function(dk){
-    ['coat','feature'].forEach(function(pid){
-      pathCats(pid).forEach(function(c){
-        correctLabelsFor(dk, c).forEach(function(lid){
-          const parents = parentsWithLabel(lid);
-          if (!parents.length) return;
-          out.push({
-            id:'ev-' + dk + '-' + lid, dataset:pid, kind:'similar', dogs:[dk],
-            text: dogName(dk) + ' shows ' + labelText(lid) + '. A similar trait appears on ' + parents.map(dogName).join(' and ') + '.',
-            meta: pid === 'coat' ? 'Coat evidence' : 'Feature evidence'
-          });
-        });
-      });
+  /* Similarity items — curated, not exhaustive. */
+  SIMILARITY_PICKS.forEach(function(pick){
+    const dk = pick.dog, lid = pick.label;
+    const l = labelById(lid);
+    const pid = pathCats('coat').indexOf(l.category) > -1 ? 'coat' : 'feature';
+    const parents = parentsWithLabel(lid);
+    if (!parents.length) return;
+    out.push({
+      id:'ev-' + dk + '-' + lid, dataset:pid, kind:'similar', dogs:[dk],
+      text: dogName(dk) + ' shows ' + labelText(lid) + '. A similar trait appears on ' + parents.map(dogName).join(' and ') + '.',
+      meta: pid === 'coat' ? 'Coat evidence' : 'Feature evidence'
     });
   });
   /* Difference items across puppies. */
@@ -3685,24 +3623,16 @@ function evidenceItems(){
     text:'Willow has mostly upright ears while Scout has floppy ears.' });
   out.push({ id:'ev-d3', dataset:'feature', kind:'differ', dogs:['poppy','milo'], multi:true, meta:'Feature evidence',
     text:'Poppy has wavy fur and floppy ears; Milo has smooth fur and mostly upright ears.' });
-  out.push({ id:'ev-d4', dataset:'coat', kind:'differ', dogs:['poppy','juniper'], multi:true, meta:'Coat evidence',
-    text:'Poppy has white paws only, while Juniper has a facial blaze and a chest patch.' });
   /* Combination items. */
   out.push({ id:'ev-c1', dataset:'coat', kind:'combo', dogs:PUPPY_KEYS.slice(), multi:true, meta:'Coat evidence',
     text:'Across all five puppies, no two show the same full set of coat colors and markings.' });
-  out.push({ id:'ev-c2', dataset:'feature', kind:'combo', dogs:PUPPY_KEYS.slice(), multi:true, meta:'Feature evidence',
-    text:'Across all five puppies, no two show the same pairing of fur texture and ear shape.' });
   out.push({ id:'ev-c3', dataset:'cross', kind:'combo', dogs:['juniper'], meta:'Both datasets',
     text:'Juniper shows traits observed in both parent dogs, but neither parent has Juniper\u2019s exact combination.' });
   out.push({ id:'ev-c4', dataset:'cross', kind:'combo', dogs:['willow'], meta:'Both datasets',
     text:'Willow shows a coat like one parent and ears like the other, so she matches neither parent exactly.' });
-  /* Not-useful record items. */
+  /* Not-useful record items (all 3 from the reduced 5-record set). */
   recordItems().filter(function(r){ return !r.relevant; }).forEach(function(r){
     out.push({ id:'ev-' + r.id, dataset:'record', kind:'notuseful', dogs:[r.dog], meta:RECORD_TYPE_LABEL[r.type] || 'Record', text:r.text });
-  });
-  /* Useful record items. */
-  recordItems().filter(function(r){ return r.relevant; }).forEach(function(r){
-    out.push({ id:'ev-' + r.id, dataset:'record', kind:'similar', dogs:[r.dog], meta:'Shelter record', text:r.text });
   });
   return out;
 }
@@ -3718,20 +3648,7 @@ function boardMinimums(){
     const z = BOARD_ZONES[i];
     if (inZone(z.id).length < 1) return { ok:false, msg:'Complete one item in each Pattern Board section — “' + z.title + '” is still empty.' };
   }
-  const datasets = {};
-  placed.forEach(function(id){
-    if (p[id] === 'notuseful') return;
-    const e = evidenceById(id);
-    if (e) datasets[e.dataset] = true;
-  });
-  const hasCoat = datasets.coat || datasets.cross, hasFeat = datasets.feature || datasets.cross;
-  if (!hasCoat || !hasFeat) return { ok:false, msg:'Your board needs evidence from both investigation reports.' };
-  const multi = placed.some(function(id){
-    if (p[id] === 'notuseful') return false;
-    const e = evidenceById(id);
-    return e && (e.multi || (e.dogs && e.dogs.length > 1));
-  });
-  if (!multi) return { ok:false, msg:'Add one observation that describes a pattern across more than one puppy.' };
+  if (inZone('notuseful').length < 1) return { ok:false, msg:'Place at least one observation in “Not Useful for This Question.”' };
   return { ok:true, msg:'' };
 }
 function renderPatternBoard(){
@@ -4180,20 +4097,13 @@ function renderRepairGuided(){
     '<h3 class="title-block">Repair each statement you marked Revise</h3>' +
     revising.map(function(t){
       const r = state.convergence2.revisions[t.id] || {};
-      const issue = state.convergence2.issueSelections[t.id];
       const attached = (r.evidence || []);
       return '<div class="card card--cream card--flat" style="margin:0 0 14px;">' +
         '<p class="original-note"><span class="original-note__label">Original wording — kept on record</span>' + esc(t.text) + '</p>' +
-        '<p class="helper" style="font-weight:700;margin-bottom:6px;">1. Which phrase or idea is inaccurate?</p>' +
-        '<input type="text" class="j-input" id="rv-phrase-' + t.id + '" data-state="convergence2.revisions.' + t.id + '.phrase" data-reveal="renderCer" placeholder="Quote the part that is wrong…" maxlength="200">' +
-        '<p class="helper" style="font-weight:700;margin:14px 0 6px;">2. What is the scientific issue?</p><div class="chip-set">' +
-          REPAIR_ISSUES.map(function(is){
-            const on = issue === is.id;
-            return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-issue-tile="' + t.id + '" data-issue="' + is.id + '" aria-pressed="' + on + '">' + esc(is.text) + '</button>';
-          }).join('') + '</div>' +
-        '<p class="helper" style="font-weight:700;margin:14px 0 6px;">3. Rewrite it in your own words.</p>' +
-        '<textarea class="j-input" id="rv-text-' + t.id + '" rows="3" data-state="convergence2.revisions.' + t.id + '.rewrite" data-reveal="renderCer" placeholder="A more accurate version would say…"></textarea>' +
-        '<p class="helper" style="font-weight:700;margin:14px 0 6px;">4. Attach evidence from your Pattern Board.</p><div class="chip-set">' +
+        '<p class="helper" style="font-weight:700;margin-bottom:6px;">1. Choose a scientifically accurate revision, then edit it if you want.</p>' +
+        (t.suggestion ? '<div class="chip-set" style="margin-bottom:8px;"><button type="button" class="chip" data-rvfill-tile="' + t.id + '" data-rvfill-text="' + esc(t.suggestion) + '">Use suggested revision</button></div>' : '') +
+        '<textarea class="j-input" id="rv-text-' + t.id + '" rows="3" data-state="convergence2.revisions.' + t.id + '.rewrite" data-reveal="renderCer" placeholder="A more accurate version would say…">' + esc(r.rewrite || '') + '</textarea>' +
+        '<p class="helper" style="font-weight:700;margin:14px 0 6px;">2. Attach evidence from your Pattern Board.</p><div class="chip-set">' +
           opts.map(function(e){
             const on = attached.indexOf(e.id) > -1;
             return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-rvev-tile="' + t.id + '" data-rvev="' + e.id + '" aria-pressed="' + on + '">' + esc(e.text.slice(0, 62)) + (e.text.length > 62 ? '…' : '') + '</button>';
@@ -4202,9 +4112,10 @@ function renderRepairGuided(){
     }).join('') + '</div>';
   bindTextInputs(mount);
 }
-function setRepairIssue(tileId, issueId){
-  state.convergence2.issueSelections[tileId] = issueId;
-  logEvent('repair-issue', { tile:tileId, issue:issueId });
+function fillRepairRevision(tileId, text){
+  if (!state.convergence2.revisions[tileId]) state.convergence2.revisions[tileId] = {};
+  state.convergence2.revisions[tileId].rewrite = text;
+  logEvent('repair-suggestion-used', { tile:tileId });
   renderRepairGuided(); renderCer(); saveState(); updateGates();
 }
 function toggleRepairEvidence(tileId, evId){
@@ -4220,9 +4131,7 @@ function revisePending(){
   const revising = REPAIR_TILES.filter(function(t){ return state.convergence2.tilePlacements[t.id] === 'revise'; });
   for (let i = 0; i < revising.length; i++){
     const t = revising[i], r = state.convergence2.revisions[t.id] || {};
-    if (!String(r.phrase || '').trim()) return 'Identify the inaccurate phrase in every Revise statement.';
-    if (!state.convergence2.issueSelections[t.id]) return 'Choose the scientific issue for every Revise statement.';
-    if (!String(r.rewrite || '').trim()) return 'Rewrite every Revise statement in your own words.';
+    if (!String(r.rewrite || '').trim()) return 'Write a revised version of every Revise statement.';
     if (!(r.evidence || []).length) return 'Attach Pattern Board evidence to every Revise statement.';
   }
   return '';
@@ -4410,12 +4319,14 @@ function setTransferTrait(caseId, traitId, optIdx){
   logEvent('transfer-trait', { case:caseId, trait:traitId, option:optIdx });
   renderTransferCases(); saveState(); updateGates();
   checkTransferFileAdded(caseId);
+  renderCrossSpeciesFrame();
 }
 function setTransferReject(optId){
   state.transfer.human.reject = optId;
   logEvent('transfer-reject', { option:optId });
   renderTransferCases(); saveState(); updateGates();
   checkTransferFileAdded('human');
+  renderCrossSpeciesFrame();
 }
 function transferCaseDone(id){
   const c = TRANSFER_CASES[id], st = state.transfer[id];
@@ -4430,6 +4341,26 @@ function transferCaseDone(id){
 function checkTransferPromptDone(){
   checkTransferFileAdded('plant');
   checkTransferFileAdded('human');
+  renderCrossSpeciesFrame();
+}
+/* The Section 10 required artifact: revealed once both transfer files are
+   complete, so students synthesize across all three cases in one place
+   instead of writing a duplicate free-text journal on top of it. */
+function renderCrossSpeciesFrame(){
+  const mount = el('crossSpeciesFrame');
+  if (!mount) return;
+  const ready = transferCaseDone('plant') && transferCaseDone('human');
+  mount.hidden = !ready;
+  if (!ready) return;
+  mount.innerHTML =
+    '<p class="eyebrow eyebrow--sage">Cross-Species Finding</p>' +
+    '<p class="journal__prompt" style="font-weight:700;color:var(--berry-dark);margin-bottom:10px;">What pattern appeared in the puppy, plant, and fictional human families, and what could appearance still not tell you?</p>' +
+    '<div class="frame-fill"><span>Across all three cases, offspring</span>' +
+    '<input type="text" class="j-input" id="crossA" data-state="transfer.crossSpeciesFinding.a" placeholder="…" maxlength="240"><span>.</span></div>' +
+    '<div class="frame-fill" style="margin-top:10px;"><span>However, appearance alone cannot tell us</span>' +
+    '<input type="text" class="j-input" id="crossB" data-state="transfer.crossSpeciesFinding.b" placeholder="…" maxlength="240"><span>.</span></div>' +
+    '<p class="save-flag" data-flag-for="crossB">✓ Saved</p>';
+  bindTextInputs(mount);
 }
 
 /* ---------- F3. SECTION 11 — VERIFICATION + SEAL ---------- */
@@ -4458,28 +4389,13 @@ function renderVerifyChecklist(){
     const sources = r.sources || [];
     return '<div class="card card--cream card--flat" style="margin:0 0 12px;">' +
       '<p style="font-weight:700;color:var(--berry-dark);margin-bottom:8px;">' + esc(v.text) + '</p>' +
-      (v.note ? '<p class="helper" style="margin-bottom:8px;">' + esc(v.note) + '</p>' : '') +
-      '<div class="chip-set">' +
-        '<button type="button" class="chip' + (r.answer === 'yes' ? ' is-selected' : '') + '" data-vf="' + v.id + '" data-vf-val="yes" aria-pressed="' + (r.answer === 'yes') + '">My evidence supports this</button>' +
-        '<button type="button" class="chip' + (r.answer === 'no' ? ' is-selected' : '') + '" data-vf="' + v.id + '" data-vf-val="no" aria-pressed="' + (r.answer === 'no') + '">My evidence cannot show this</button>' +
-      '</div>' +
-      (r.answer === 'yes' ?
-        '<p class="helper" style="font-weight:700;margin:12px 0 6px;">Attach the evidence that supports it:</p><div class="chip-set">' +
+      '<p class="helper" style="font-weight:700;margin-bottom:6px;">Which evidence best supports this statement?</p><div class="chip-set">' +
         VERIFY_SOURCES.map(function(s){
           const on = sources.indexOf(s.id) > -1;
           return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-vfsrc="' + v.id + '" data-vfsrc-id="' + s.id + '" aria-pressed="' + on + '">' + esc(s.label) + '</button>';
         }).join('') + '</div>' +
-        (!sources.length ? '<div class="feedback feedback--rethink" style="margin-top:9px;"><span class="feedback__icon">↻</span><span>Attach at least one source. Checking a box is not verification.</span></div>' : '')
-      : '') +
       '</div>';
   }).join('');
-}
-function setVerify(id, val){
-  if (!state.transfer.verificationChecklist[id]) state.transfer.verificationChecklist[id] = {};
-  state.transfer.verificationChecklist[id].answer = val;
-  if (val === 'no') state.transfer.verificationChecklist[id].sources = [];
-  logEvent('verify-answer', { item:id, val:val });
-  renderVerifyChecklist(); renderSeal(); saveState(); updateGates();
 }
 function toggleVerifySource(id, src){
   const r = state.transfer.verificationChecklist[id] || (state.transfer.verificationChecklist[id] = {});
@@ -4489,36 +4405,32 @@ function toggleVerifySource(id, src){
   logEvent('verify-source', { item:id, source:src });
   renderVerifyChecklist(); renderSeal(); saveState(); updateGates();
 }
-function renderKsl(){
+/* Replaces Keep/Strengthen/Limit as three separate fields with one concise
+   frame, prefilled from the Section 10 cross-species finding so students
+   are editing carried-forward reasoning rather than starting blank. */
+function renderSignoff(){
   const mount = el('kslReview');
   if (!mount) return;
+  const sf = state.transfer.signoffFrame;
+  if (!sf.a && !sf.b && (state.transfer.crossSpeciesFinding.a || state.transfer.crossSpeciesFinding.b)){
+    sf.a = state.transfer.crossSpeciesFinding.a;
+    sf.b = state.transfer.crossSpeciesFinding.b;
+  }
   mount.innerHTML =
-    '<p class="helper" style="font-weight:700;margin-bottom:6px;">Keep — which part of your puppy explanation stayed supported?</p>' +
-    '<textarea class="j-input" id="kslKeep" rows="3" data-state="transfer.keep" placeholder="The part that stayed supported was…"></textarea>' +
-    '<p class="save-flag" data-flag-for="kslKeep">✓ Saved</p>' +
-    '<p class="helper" style="font-weight:700;margin:16px 0 6px;">Strengthen — widen the claim beyond this litter.</p>' +
-    '<div class="frame-fill"><span>This is not only a puppy pattern. Across plants, animals, and humans, offspring</span>' +
-    '<input type="text" class="j-input" id="kslStrengthen" data-state="transfer.strengthen" placeholder="…" maxlength="240"><span>.</span></div>' +
-    '<p class="save-flag" data-flag-for="kslStrengthen">✓ Saved</p>' +
-    '<p class="helper" style="font-weight:700;margin:16px 0 6px;">Limit — what can your evidence <em>not</em> establish? Choose every one that applies.</p>' +
-    '<div class="chip-set">' + LIMIT_OPTIONS.map(function(l){
-      const on = state.transfer.limit.indexOf(l.id) > -1;
-      return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-limit="' + l.id + '" aria-pressed="' + on + '">' + esc(l.text) + '</button>';
-    }).join('') + '</div>';
+    '<div class="frame-fill"><span>Our evidence supports the idea that</span>' +
+    '<input type="text" class="j-input" id="signoffA" data-state="transfer.signoffFrame.a" placeholder="…" maxlength="240">' +
+    '<span>, but it cannot show</span>' +
+    '<input type="text" class="j-input" id="signoffB" data-state="transfer.signoffFrame.b" placeholder="…" maxlength="240"><span>.</span></div>' +
+    '<p class="save-flag" data-flag-for="signoffB">✓ Saved</p>';
   bindTextInputs(mount);
-}
-function toggleLimit(id){
-  const arr = state.transfer.limit, i = arr.indexOf(id);
-  if (i > -1) arr.splice(i, 1); else arr.push(id);
-  logEvent('limit-toggle', { id:id });
-  renderKsl(); renderSeal(); saveState(); updateGates();
 }
 function sealEarnable(){
   const checklistOk = VERIFY_ITEMS.every(function(v){
     const r = state.transfer.verificationChecklist[v.id];
-    return r && r.answer && (r.answer === 'no' || (r.sources && r.sources.length));
+    return r && r.sources && r.sources.length;
   });
-  return checklistOk && String(state.transfer.keep).trim() && String(state.transfer.strengthen).trim() && state.transfer.limit.length > 0;
+  const sf = state.transfer.signoffFrame;
+  return checklistOk && String(sf.a).trim() && String(sf.b).trim();
 }
 function sealHtml(earned){
   return '<span class="seal' + (earned ? '' : ' seal--locked') + '" role="img" aria-label="' +
@@ -4543,7 +4455,7 @@ function renderSeal(){
   mount.innerHTML = sealHtml(earned) +
     '<p class="helper" style="margin-top:12px;">' +
     (earned ? 'The veterinarian has signed off. The scientific explanation may now move to the public display.'
-            : 'Finish the checklist and the Keep · Strengthen · Limit review to earn the seal.') + '</p>';
+            : 'Attach evidence to all three claims and complete the sign-off summary to earn the seal.') + '</p>';
 }
 
 /* ---------- F4. SECTION 12 — LIBRARY + TOURNAMENT ---------- */
@@ -4567,7 +4479,7 @@ function renderLibrary(){
   lib.push({ h:'Repaired explanation', b:repairedExplanationText() });
   lib.push({ h:'Plant evidence', b:Object.keys(state.transfer.plant.prompts || {}).map(function(k){ return state.transfer.plant.prompts[k]; }).join(' · ') || '—' });
   lib.push({ h:'Human evidence', b:Object.keys(state.transfer.human.prompts || {}).map(function(k){ return state.transfer.human.prompts[k]; }).join(' · ') || '—' });
-  lib.push({ h:'Keep · Strengthen · Limit', b:'Keep: ' + (state.transfer.keep || '—') + ' · Strengthen: ' + (state.transfer.strengthen || '—') + ' · Limits: ' + state.transfer.limit.length });
+  lib.push({ h:'Veterinary sign-off summary', b:'Supports: ' + (state.transfer.signoffFrame.a || '—') + ' · Cannot show: ' + (state.transfer.signoffFrame.b || '—') });
   lib.push({ h:'Evidence Checked seal', b:state.transfer.evidenceSealEarned ? 'Earned' : 'Not yet earned' });
   mount.innerHTML = lib.map(function(x){
     return '<div class="board__panel" style="margin-bottom:10px;"><p class="board__panel-h">' + esc(x.h) + '</p><p class="narrative-text" style="font-size:.88rem;">' + esc(x.b) + '</p></div>';
@@ -4589,58 +4501,46 @@ function rankCandidates(catId){
 function renderTournament(){
   const mount = el('tournament');
   if (!mount) return;
-  mount.innerHTML = RANK_CATEGORIES.map(function(cat){
+  let html = RANK_CATEGORIES.map(function(cat){
     const cands = rankCandidates(cat.id), r = state.ranking[cat.id];
-    if (cands.length < 2){
+    if (!cands.length){
       return '<div class="card"><p class="eyebrow eyebrow--gold">' + esc(cat.label) + '</p>' +
-        '<div class="feedback feedback--rethink"><span class="feedback__icon">↻</span><span>Go back to the Pattern Board and place more evidence in this category before ranking.</span></div></div>';
+        '<div class="feedback feedback--rethink"><span class="feedback__icon">↻</span><span>Go back to the Pattern Board and place evidence in this category before choosing.</span></div></div>';
     }
-    const r1 = r.rounds[0], r2 = r.rounds[1];
     let h = '<div class="card"><p class="eyebrow eyebrow--gold">' + esc(cat.label) + '</p>' +
-      '<h3 class="title-block">' + esc(cat.prompt) + '</h3>';
-
-    h += '<p class="align-label">Evidence Matchup 1</p>' + versusHtml(cat.id, 0, cands[0], cands[1], r1 && r1.winner);
-    if (r1 && r1.winner && cands[2]){
-      const w = cands.filter(function(c){ return c.id === r1.winner; })[0] || cands[0];
-      h += '<p class="align-label">Evidence Matchup 2</p>' + versusHtml(cat.id, 1, w, cands[2], r2 && r2.winner);
-    }
+      '<h3 class="title-block">' + esc(cat.prompt) + '</h3>' +
+      '<div class="board__cols">' + cands.map(function(c){
+        const on = r.winner === c.id;
+        return '<button type="button" class="ev-card' + (on ? ' is-winner' : '') + '" data-pick-cat="' + cat.id + '" data-pick-ev="' + c.id + '" aria-pressed="' + on + '">' +
+          '<span class="ev-card__cat">' + esc(c.meta || 'Evidence') + '</span>' +
+          '<span class="ev-card__text">' + esc(c.text) + '</span>' +
+          (on ? '<span class="tag tag--sage">Selected for Display</span>' : '<span class="tag">Choose this one</span>') + '</button>';
+      }).join('') + '</div>';
     if (r.winner){
-      const w = cands.filter(function(c){ return c.id === r.winner; })[0];
-      h += '<div class="feedback feedback--yes" style="margin-top:14px;"><span class="feedback__icon">★</span><span><strong>Selected for Display:</strong> ' + esc(w ? w.text : '') + '</span></div>' +
-        '<p class="align-label">Why is this the stronger evidence?</p><div class="chip-set">' +
-          RANK_REASONS.map(function(rr){
-            const on = r.reason === rr.id;
-            return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-rank-cat="' + cat.id + '" data-rank-reason="' + rr.id + '" aria-pressed="' + on + '">' + esc(rr.text) + '</button>';
-          }).join('') + '</div>' +
-        '<div class="frame-fill" style="margin-top:12px;"><span>I chose this evidence because it is more</span>' +
-          '<input type="text" class="j-input" id="rk-more-' + cat.id + '" data-state="ranking.' + cat.id + '.more" placeholder="' + esc(r.reason ? (RANK_REASONS.filter(function(x){ return x.id === r.reason; })[0] || {}).text || '' : '…') + '" maxlength="140">' +
-          '<span>, and it shows</span>' +
-          '<input type="text" class="j-input" id="rk-shows-' + cat.id + '" data-state="ranking.' + cat.id + '.shows" placeholder="…" maxlength="200"><span>.</span></div>' +
-        '<p class="save-flag" data-flag-for="rk-shows-' + cat.id + '">✓ Saved</p>';
+      h += '<p class="align-label">Why is this the stronger evidence?</p><div class="chip-set">' +
+        RANK_REASONS.map(function(rr){
+          const on = r.reason === rr.id;
+          return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-rank-cat="' + cat.id + '" data-rank-reason="' + rr.id + '" aria-pressed="' + on + '">' + esc(rr.text) + '</button>';
+        }).join('') + '</div>';
     }
     return h + '</div>';
   }).join('');
+
+  const allChosen = RANK_CATEGORIES.every(function(c){ return state.ranking[c.id].winner && state.ranking[c.id].reason; });
+  if (allChosen){
+    html += '<div class="card"><p class="eyebrow eyebrow--sage">Your Three Choices</p>' +
+      '<div class="frame-fill"><span>I selected these three pieces of evidence because</span>' +
+      '<input type="text" class="j-input" id="rankOverall" data-state="ranking.overallReason" placeholder="…" maxlength="240"><span>.</span></div>' +
+      '<p class="save-flag" data-flag-for="rankOverall">✓ Saved</p></div>';
+  }
+  mount.innerHTML = html;
   bindTextInputs(mount);
 }
-function versusHtml(catId, roundIdx, a, b, winnerId){
-  const card = function(c){
-    const on = winnerId === c.id;
-    return '<button type="button" class="ev-card' + (on ? ' is-winner' : '') + '" data-vs-cat="' + catId + '" data-vs-round="' + roundIdx + '" data-vs-pick="' + c.id + '" aria-pressed="' + on + '">' +
-      '<span class="ev-card__cat">' + esc(c.meta || 'Evidence') + '</span>' +
-      '<span class="ev-card__text">' + esc(c.text) + '</span>' +
-      (on ? '<span class="tag tag--sage">Advances</span>' : '<span class="tag">Choose this one</span>') + '</button>';
-  };
-  return '<div class="versus">' + card(a) + '<span class="versus__vs">VS</span>' + card(b) + '</div>';
-}
-function pickVersus(catId, roundIdx, evId){
+function pickDirect(catId, evId){
   const r = state.ranking[catId];
-  const cands = rankCandidates(catId);
   const wasFull = RANK_CATEGORIES.every(function(c){ return !!state.ranking[c.id].winner; });
-  r.rounds[roundIdx] = { round:roundIdx + 1, winner:evId, at:new Date().toISOString(),
-    options:(roundIdx === 0 ? [cands[0].id, cands[1].id] : [(r.rounds[0] || {}).winner, cands[2] ? cands[2].id : null]) };
-  if (roundIdx === 0){ r.rounds.length = 1; r.winner = cands[2] ? null : evId; }
-  else r.winner = evId;
-  logEvent('rank-pick', { category:catId, round:roundIdx + 1, winner:evId });
+  r.winner = evId;
+  logEvent('rank-pick', { category:catId, winner:evId });
   renderTournament(); renderCapacityMeter(); saveState(); updateGates();
   const nowFull = RANK_CATEGORIES.every(function(c){ return !!state.ranking[c.id].winner; });
   if (nowFull && !wasFull) toast('DISPLAY EVIDENCE SELECTED — 3 OF 3');
@@ -4660,8 +4560,6 @@ function renderCapacityMeter(){
 }
 function setRankReason(catId, reasonId){
   state.ranking[catId].reason = reasonId;
-  const rr = RANK_REASONS.filter(function(x){ return x.id === reasonId; })[0];
-  if (rr && !String(state.ranking[catId].more).trim()) state.ranking[catId].more = rr.text;
   logEvent('rank-reason', { category:catId, reason:reasonId });
   renderTournament(); saveState(); updateGates();
 }
@@ -4670,31 +4568,41 @@ function setRankReason(catId, reasonId){
 function renderSampleCompare(){
   const mount = el('sampleCompare');
   if (!mount) return;
-  mount.innerHTML = SAMPLE_EXPLANATIONS.map(function(s){
-    const j = state.audience.sampleComparison[s.id] || {};
-    return '<div class="card card--cream card--flat" style="margin:0 0 14px;">' +
-      '<p class="eyebrow">' + esc(s.label) + '</p>' +
-      '<p class="narrative-text" style="font-style:italic;">“' + esc(s.text) + '”</p>' +
-      '<p class="helper" style="font-weight:700;margin:12px 0 6px;">Judge this draft:</p>' +
-      SAMPLE_CRITERIA.map(function(c){
-        const v = j[c.id];
-        return '<div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:7px;">' +
-          '<span style="flex:1 1 160px;font-size:.86rem;color:var(--gray-700);">' + esc(c.label) + '</span>' +
-          '<button type="button" class="mini-btn' + (v === true ? ' mini-btn--on' : '') + '" data-sc="' + s.id + '" data-sc-crit="' + c.id + '" data-sc-val="1">Yes</button>' +
-          '<button type="button" class="mini-btn' + (v === false ? ' mini-btn--on' : '') + '" data-sc="' + s.id + '" data-sc-crit="' + c.id + '" data-sc-val="0">No</button>' +
-          '</div>';
-      }).join('') +
-      (Object.keys(j).length >= SAMPLE_CRITERIA.length ?
-        '<div class="feedback feedback--' + (s.strong ? 'yes' : 'rethink') + '" style="margin-top:10px;">' +
-        '<span class="feedback__icon">' + (s.strong ? '✓' : '↻') + '</span><span>' + esc(s.fb) + '</span></div>' : '') +
-      '</div>';
-  }).join('');
+  const sc = state.audience.sampleComparison;
+  let html = '<div class="board__cols">' + SAMPLE_EXPLANATIONS.map(function(s){
+    const on = sc.strongerPick === s.id;
+    return '<button type="button" class="ev-card' + (on ? ' is-winner' : '') + '" data-pick-draft="' + s.id + '" aria-pressed="' + on + '">' +
+      '<span class="ev-card__cat">' + esc(s.label) + '</span>' +
+      '<span class="ev-card__text" style="font-style:italic;">“' + esc(s.text) + '”</span>' +
+      (on ? '<span class="tag tag--sage">Stronger draft</span>' : '<span class="tag">Choose this one</span>') + '</button>';
+  }).join('') + '</div>';
+  if (sc.strongerPick){
+    html += '<div class="card card--cream card--flat" style="margin-top:14px;">' +
+      '<p class="helper" style="font-weight:700;margin-bottom:8px;">What is the problem with the other draft?</p><div class="chip-set">' +
+      SAMPLE_PROBLEMS.map(function(p){
+        const on = sc.problemPick === p.id;
+        return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-pick-problem="' + p.id + '" aria-pressed="' + on + '">' + esc(p.text) + '</button>';
+      }).join('') + '</div></div>';
+  }
+  mount.innerHTML = html;
 }
-function setSampleCriterion(sid, crit, val){
-  if (!state.audience.sampleComparison[sid]) state.audience.sampleComparison[sid] = {};
-  state.audience.sampleComparison[sid][crit] = val;
-  logEvent('sample-judge', { sample:sid, criterion:crit, value:val });
+function pickStrongerDraft(id){
+  state.audience.sampleComparison.strongerPick = id;
+  logEvent('sample-stronger', { id:id });
   renderSampleCompare(); saveState(); updateGates();
+}
+function pickSampleProblem(id){
+  state.audience.sampleComparison.problemPick = id;
+  logEvent('sample-problem', { id:id });
+  renderSampleCompare(); saveState(); updateGates();
+}
+/* Carries the Section 8 Claim-Evidence-Reasoning explanation forward instead
+   of asking students to write it a second time from a blank box. */
+function prefillScientificExplanation(){
+  if (!String(state.audience.scientificExplanation).trim()){
+    state.audience.scientificExplanation = repairedExplanationText();
+    saveState();
+  }
 }
 function renderAudienceChecklist(){
   const mount = el('audienceChecklist');
@@ -4721,22 +4629,26 @@ function renderVisitorFrame(){
   if (!mount) return;
   mount.innerHTML = '<p class="align-label">Visitor-Friendly Explanation</p>' +
     '<div class="frame-fill">' +
-      '<span>These puppies are part of the same family, but they do not all look exactly alike because</span>' +
+      '<span>These puppies are from the same family. They share</span>' +
       '<input type="text" class="j-input" id="vfA" data-state="audience.visitorFrame.a" placeholder="…" maxlength="220">' +
-      '<span>. Our evidence shows</span>' +
-      '<input type="text" class="j-input" id="vfB" data-state="audience.visitorFrame.b" placeholder="…" maxlength="220">' +
-      '<span>. This means</span>' +
-      '<input type="text" class="j-input" id="vfC" data-state="audience.visitorFrame.c" placeholder="…" maxlength="220"><span>.</span>' +
-    '</div><p class="save-flag" data-flag-for="vfC">✓ Saved</p>';
+      '<span>, but they do not all look alike because</span>' +
+      '<input type="text" class="j-input" id="vfB" data-state="audience.visitorFrame.b" placeholder="…" maxlength="220"><span>.</span>' +
+    '</div>' +
+    '<p class="helper" style="margin:12px 0 6px;">Optional final sentence:</p>' +
+    '<div class="frame-fill">' +
+      '<span>Appearance cannot tell us</span>' +
+      '<input type="text" class="j-input" id="vfC" data-state="audience.visitorFrame.c" placeholder="…(optional)" maxlength="220"><span>.</span>' +
+    '</div><p class="save-flag" data-flag-for="vfB">✓ Saved</p>';
   bindTextInputs(mount);
   syncVisitorExplanation();
 }
 function syncVisitorExplanation(){
   const f = state.audience.visitorFrame;
-  if (String(f.a).trim() || String(f.b).trim() || String(f.c).trim()){
+  if (String(f.a).trim() || String(f.b).trim()){
     state.audience.visitorExplanation =
-      'These puppies are part of the same family, but they do not all look exactly alike because ' + (f.a || '…') +
-      '. Our evidence shows ' + (f.b || '…') + '. This means ' + (f.c || '…') + '.';
+      'These puppies are from the same family. They share ' + (f.a || '…') +
+      ', but they do not all look alike because ' + (f.b || '…') + '.' +
+      (String(f.c).trim() ? ' Appearance cannot tell us ' + f.c + '.' : '');
   }
 }
 </script>
@@ -4768,12 +4680,12 @@ function renderSpotlightPicker(){
 
   if (pup){
     const sel = state.display.spotlightTraits;
-    h += '<p class="align-label">Choose two or three inherited physical traits</p><div class="chip-set">' +
+    h += '<p class="align-label">Choose two inherited physical traits</p><div class="chip-set">' +
       spotlightTraitOptions(pup).map(function(lid){
         const on = sel.indexOf(lid) > -1;
         return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-spot-trait="' + lid + '" aria-pressed="' + on + '">' + esc(labelText(lid)) + '</button>';
       }).join('') + '</div>' +
-      '<p class="helper" style="margin-top:7px;">' + sel.length + ' of 2–3 chosen.</p>';
+      '<p class="helper" style="margin-top:7px;">' + sel.length + ' of 2 chosen.</p>';
 
     const opts = boardEvidenceOptions();
     const selEv = state.display.spotlightEvidence;
@@ -4803,8 +4715,8 @@ function chooseSpotlightPuppy(dk){
 function toggleSpotlightTrait(lid){
   const arr = state.display.spotlightTraits, i = arr.indexOf(lid);
   if (i > -1) arr.splice(i, 1);
-  else if (arr.length < 3) arr.push(lid);
-  else { toast('A spotlight holds three traits at most. Remove one first.'); return; }
+  else if (arr.length < 2) arr.push(lid);
+  else { toast('A spotlight holds two traits. Remove one first.'); return; }
   renderSpotlightPicker(); renderBuilderChecklist(); saveState(); updateGates();
 }
 function toggleSpotlightEvidence(evId){
@@ -4832,20 +4744,22 @@ function chooseTemplate(id){
   logEvent('template-chosen', { template:id });
   renderTemplateChoices(); renderBuilderChecklist(); saveState(); updateGates();
 }
+function featuredPuppyReady(){
+  const d = state.display;
+  return !!d.featuredPuppy && d.spotlightTraits.length >= 2 && d.spotlightEvidence.length > 0 && !!String(d.spotlightHeading).trim();
+}
+/* 5 consolidated visible items, matching what students actually see as
+   distinct decisions — the underlying sub-conditions (which puppy, which
+   traits, which evidence, seal earnability, etc.) still gate correctly,
+   they just are not each listed as their own checklist row. */
 function builderRequirements(){
   const d = state.display;
   return [
-    { ok: !!state.ranking.familySimilarity.winner,  text:'Ranked family similarity evidence' },
-    { ok: !!state.ranking.siblingVariation.winner,  text:'Ranked sibling variation evidence' },
-    { ok: !!state.ranking.traitCombinations.winner, text:'Ranked different-combination evidence' },
-    { ok: !!String(state.audience.scientificExplanation).trim(), text:'Verified scientific explanation' },
-    { ok: !!String(state.audience.visitorExplanation).trim(),    text:'Visitor-friendly explanation' },
-    { ok: !!state.transfer.evidenceSealEarned,      text:'Evidence Checked seal' },
-    { ok: !!d.featuredPuppy,                        text:'Featured puppy chosen' },
-    { ok: d.spotlightTraits.length >= 2,            text:'Two or three spotlight traits' },
-    { ok: d.spotlightEvidence.length > 0,           text:'Supporting family evidence attached' },
-    { ok: !!String(d.spotlightHeading).trim(),      text:'Spotlight heading written' },
-    { ok: !!d.template,                             text:'Display template selected' }
+    { ok: !!state.transfer.evidenceSealEarned,      text:'Evidence Checked' },
+    { ok: RANK_CATEGORIES.every(function(c){ return !!state.ranking[c.id].winner; }), text:'Three evidence cards selected' },
+    { ok: !!String(state.audience.visitorExplanation).trim(), text:'Visitor explanation ready' },
+    { ok: featuredPuppyReady(),                     text:'Featured puppy ready' },
+    { ok: !!d.template,                             text:'Layout selected' }
   ];
 }
 function renderBuilderChecklist(){
@@ -5046,6 +4960,28 @@ function renderWallAnswerPicker(){
     const on = state.visitorWall.finalSelectedQuestion === q.id;
     return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-final-q="' + q.id + '" aria-pressed="' + on + '">' + esc(q.text) + '</button>';
   }).join('') + '</div>';
+  if (state.visitorWall.finalSelectedQuestion){
+    mount.innerHTML +=
+      '<p class="helper" style="font-weight:700;margin:16px 0 6px;">What would you tell the visitor?</p>' +
+      '<label class="visually-hidden" for="finalResponseText">Visitor answer</label>' +
+      '<textarea id="finalResponseText" class="j-input" rows="4" data-state="visitorWall.finalResponse" data-reveal="renderCaseCloseAuto" placeholder="I would tell the visitor…"></textarea>' +
+      '<p class="save-flag" data-flag-for="finalResponseText">✓ Saved</p>' +
+      '<p class="helper" style="font-weight:700;margin:16px 0 6px;">Which evidence card from your display supports this answer?</p>' +
+      '<div class="chip-set">' + displayEvidenceOptions().map(function(o){
+        const on = state.visitorWall.finalEvidenceId === o.id;
+        return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-final-ev="' + o.id + '" aria-pressed="' + on + '">' + esc(o.text.slice(0, 70)) + (o.text.length > 70 ? '…' : '') + '</button>';
+      }).join('') + '</div>';
+  }
+  bindTextInputs(mount);
+}
+/* The three evidence cards the student already selected for the display in
+   Section 12 — reused here so "which evidence supports this" is a choice
+   among known cards, not a new open-ended attachment system. */
+function displayEvidenceOptions(){
+  return RANK_CATEGORIES.map(function(c){
+    const id = state.ranking[c.id].winner;
+    return id ? evidenceById(id) : null;
+  }).filter(Boolean);
 }
 function chooseFinalQuestion(id){
   state.visitorWall.finalSelectedQuestion = id;
@@ -5053,26 +4989,38 @@ function chooseFinalQuestion(id){
   renderWallAnswerPicker(); saveState(); updateGates();
   toast('VISITOR QUESTION WALL UPDATED');
 }
-function renderCaseClose(){
+function chooseFinalEvidence(id){
+  state.visitorWall.finalEvidenceId = id;
+  logEvent('final-evidence', { id:id });
+  renderWallAnswerPicker(); renderCaseCloseAuto(); saveState(); updateGates();
+}
+/* Auto-generates the staff-facing recommendation from the visitor answer,
+   the selected evidence, and the scientific-limit statement already written
+   in Section 11 — students review and may edit it, rather than writing a
+   second, separate four-part response from scratch. */
+function renderCaseCloseAuto(){
   const mount = el('caseCloseFrame');
   if (!mount) return;
+  const ready = state.visitorWall.finalSelectedQuestion && String(state.visitorWall.finalResponse).trim() && state.visitorWall.finalEvidenceId;
+  if (!ready){ mount.innerHTML = '<p class="helper">Answer the visitor above to generate this recommendation.</p>'; return; }
+  const ev = evidenceById(state.visitorWall.finalEvidenceId);
+  const limit = state.transfer.signoffFrame.b || state.transfer.crossSpeciesFinding.b || 'personality, behavior, or ability';
+  const auto = 'Visitors should understand that ' + state.visitorWall.finalResponse.trim() +
+    ' This is supported by: ' + (ev ? ev.text : '—') +
+    ' Staff should not assume appearance can show ' + limit + '.';
+  state.caseClose.recommendation.auto = auto;
+  const shown = state.caseClose.recommendation.edited || auto;
   mount.innerHTML =
-    '<div class="frame-fill">' +
-      '<span>Visitors should understand that</span>' +
-      '<input type="text" class="j-input" id="ccA" data-state="caseClose.recommendation.a" placeholder="…" maxlength="220">' +
-      '<span>. The puppy-family evidence shows</span>' +
-      '<input type="text" class="j-input" id="ccB" data-state="caseClose.recommendation.b" placeholder="…" maxlength="220">' +
-      '<span>. They should not assume</span>' +
-      '<input type="text" class="j-input" id="ccC" data-state="caseClose.recommendation.c" placeholder="…" maxlength="220">' +
-      '<span>because</span>' +
-      '<input type="text" class="j-input" id="ccD" data-state="caseClose.recommendation.d" placeholder="…" maxlength="220"><span>.</span>' +
-    '</div><p class="save-flag" data-flag-for="ccD">✓ Saved</p>';
+    '<div class="card card--cream card--flat" style="margin:0 0 12px;"><p class="narrative-text">' + esc(auto) + '</p></div>' +
+    '<p class="helper" style="font-weight:700;margin-bottom:6px;">Edit if you want, or leave it as generated.</p>' +
+    '<label class="visually-hidden" for="caseCloseEdit">Case Close Recommendation</label>' +
+    '<textarea id="caseCloseEdit" class="j-input" rows="4" data-state="caseClose.recommendation.edited" placeholder="' + esc(auto) + '"></textarea>' +
+    '<p class="save-flag" data-flag-for="caseCloseEdit">✓ Saved</p>';
   bindTextInputs(mount);
 }
 function caseCloseText(){
   const r = state.caseClose.recommendation;
-  return 'Visitors should understand that ' + (r.a || '…') + '. The puppy-family evidence shows ' + (r.b || '…') +
-         '. They should not assume ' + (r.c || '…') + ' because ' + (r.d || '…') + '.';
+  return r.edited || r.auto || '';
 }
 
 /* ---------- G5. SECTION 16 — COMPLETION ---------- */
@@ -5207,8 +5155,7 @@ function exWall(){
     exTable(['Visitor question','Original placement','Final placement','Change'], rows) +
     exField('Question that was hardest to place', dq ? dq.text : '') +
     exJournal('j2') +
-    exField('Question chosen for the final answer', fq ? fq.text : '') +
-    exJournal('j12'));
+    exField('Question chosen for the final answer', fq ? fq.text : ''));
 }
 function exBriefing(){
   const rows = EVIDENCE_CHECK.map(function(it){
@@ -5217,7 +5164,8 @@ function exBriefing(){
       a === it.answer ? 'Matches the evidence' : 'Reconsidered', String(state.evidenceCheck.attempts[it.id] || 0)];
   });
   return exBlock('3 · Veterinarian Briefing & Evidence Check',
-    exTable(['Observation','Student decision','Result','Attempts'], rows) + exJournal('j3'));
+    exTable(['Observation','Student decision','Result','Attempts'], rows) +
+    exField('An observation is useful when it…', state.evidenceCheck.completionFrame));
 }
 function exDp1(){
   const pid = state.decisions.dp1Path;
@@ -5237,9 +5185,9 @@ function exDp1(){
     });
   });
   const mxRows = BRIDGE_KEYS.map(function(dk){
-    const row = state.dp1.bridgeMatrix[dk] || { cats:{} };
-    return [dogName(dk)].concat(path.categories.map(function(c){ return ((row.cats || {})[c] || []).map(labelText).join(', '); }))
-      .concat([row.located === 'yes' ? 'Yes' : (row.located === 'no' ? 'No' : '—')]);
+    const row = state.dp1.bridgeMatrix[dk] || {};
+    return [dogName(dk)].concat(path.categories.map(function(c){ return correctLabelsFor(dk, c).map(labelText).join(', '); }))
+      .concat([row.confirmed ? labelText(row.confirmed) : '—']);
   });
   const recRows = recordItems().map(function(r){
     const z = state.dp1.shelterRecordSelections[r.id];
@@ -5249,15 +5197,13 @@ function exDp1(){
   return exBlock('4 · Evidence Assignment Investigation',
     exField('Path selected', path.name) +
     '<h3>Parent Reference Cards (student-built)</h3>' + exTable(['Parent','Trait','Labels selected'], refRows) +
-    exJournal('j4') +
     '<h3>Willow–Scout Contrast Map</h3>' +
     (linkRows.length ? exTable(['Puppy','Observation','Similar trait appears in'], linkRows) : '<p class="ex-empty">No connections were made.</p>') +
     exField('Comparison', 'Willow and Scout look different because ' + (ws.compareA || '…') + ', but both show family patterns because ' + (ws.compareB || '…') + '.') +
-    exJournal('j5') +
     '<h3>Three-Puppy Matrix</h3>' +
-    exTable(['Puppy'].concat(path.categories.map(function(c){ return CATEGORY_LABEL[c]; })).concat(['Similar family evidence located?']), mxRows) +
+    exTable(['Puppy'].concat(path.categories.map(function(c){ return CATEGORY_LABEL[c]; })).concat(['Trait confirmed as family evidence']), mxRows) +
     '<h3>Shelter Record Relevance</h3>' + exTable(['Dog','Record entry','Type','Student decision'], recRows) +
-    exJournal('j6') +
+    exJournal('j4') +
     exField('Complementary report reviewed', state.dp1.otherPathOverviewViewed ? DP1_PATHS[otherPathId(pid)].name + ' — reviewed' : 'Not reviewed'));
 }
 function exConvergence1(){
@@ -5277,7 +5223,7 @@ function exConvergence1(){
     (state.convergence1.flaggedItems.length ? '<h3>Items flagged during review</h3><ul>' +
       state.convergence1.flaggedItems.map(function(f){ return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>' : '') +
     (unused.length ? '<h3>Evidence left in the tray</h3>' + exTable(['Observation','Source'], unused) : '') +
-    exJournal('j7'));
+    exField('What the combined evidence shows', state.convergence1.journalResponse));
 }
 function exDp2(){
   const qid = state.decisions.dp2Question;
@@ -5307,7 +5253,7 @@ function exDp2(){
       exField('Parent 2 has this exact combination?', w.compare.parent2 === 'no' ? 'No' : (w.compare.parent2 || '—')) +
       exField('Why neither parent matches', w.note);
   }
-  inner += exField('Inheritance explanation', state.dp2.pathExplanation) + exJournal('j8') +
+  inner += exField('Inheritance explanation', state.dp2.pathExplanation) +
     exField('Complementary question overview', DP2_QUESTIONS[otherQuestionId(qid)].name +
       (state.dp2.otherPathOverviewViewed ? ' — reviewed' : ' — available at convergence'));
   return exBlock('6 · Visitor Question Investigation', inner);
@@ -5320,9 +5266,8 @@ function exConvergence2(){
   });
   const revised = REPAIR_TILES.filter(function(t){ return c2.tilePlacements[t.id] === 'revise'; }).map(function(t){
     const r = c2.revisions[t.id] || {};
-    const iss = REPAIR_ISSUES.filter(function(i){ return i.id === c2.issueSelections[t.id]; })[0];
     const ev = (r.evidence || []).map(function(id){ const e = evidenceById(id); return e ? e.text : id; }).join(' · ');
-    return [t.text, r.phrase || '—', iss ? iss.text : '—', r.rewrite || '—', ev || '—'];
+    return [t.text, r.rewrite || '—', ev || '—'];
   });
   const attach = CER_SLOTS.map(function(s){
     return [s.label, (c2.attachedEvidence[s.id] || []).map(function(id){ const e = evidenceById(id); return e ? e.text : id; }).join(' · ') || '—'];
@@ -5330,13 +5275,12 @@ function exConvergence2(){
   return exBlock('7 · Repair the Shelter\u2019s Draft',
     exTable(['Draft statement','Student decision'], rows) +
     (revised.length ? '<h3>Guided revisions (original wording preserved)</h3>' +
-      exTable(['Original statement','Inaccurate phrase','Scientific issue','Student rewrite','Evidence attached'], revised) : '') +
+      exTable(['Original statement','Student rewrite','Evidence attached'], revised) : '') +
     '<h3>Final Explanation</h3>' +
     exField('Claim', c2.finalExplanation.claim) +
     exField('Evidence', 'In this puppy family, ' + (c2.finalExplanation.evidence || '…')) +
     exField('Reasoning', 'This shows that ' + (c2.finalExplanation.reasoning || '…')) +
-    exTable(['Required component','Evidence attached'], attach) +
-    exJournal('j9'));
+    exTable(['Required component','Evidence attached'], attach));
 }
 function exTransfer(){
   const t = state.transfer;
@@ -5355,23 +5299,20 @@ function exTransfer(){
                exField('Student response', o ? o.text : '—');
     }
   });
+  inner += '<h3>Cross-Species Finding</h3>' +
+    exField('Across all three cases, offspring…', t.crossSpeciesFinding.a) +
+    exField('However, appearance alone cannot tell us…', t.crossSpeciesFinding.b);
   const vRows = VERIFY_ITEMS.map(function(v){
     const r = t.verificationChecklist[v.id] || {};
-    return [v.text, r.answer === 'yes' ? 'Supported' : (r.answer === 'no' ? 'Not supported by this evidence' : '—'),
-      (r.sources || []).map(function(s){
+    return [v.text, (r.sources || []).map(function(s){
         const src = VERIFY_SOURCES.filter(function(x){ return x.id === s; })[0];
         return src ? src.label : s;
       }).join(', ') || '—'];
   });
-  inner += '<h3>Verification Checklist</h3>' + exTable(['Statement','Verdict','Evidence attached'], vRows) +
-    '<h3>Keep · Strengthen · Limit</h3>' +
-    exField('Keep', t.keep) +
-    exField('Strengthen', 'This is not only a puppy pattern. Across plants, animals, and humans, offspring ' + (t.strengthen || '…') + '.') +
-    exField('Limit — what the evidence cannot establish', t.limit.map(function(id){
-      const l = LIMIT_OPTIONS.filter(function(x){ return x.id === id; })[0];
-      return l ? l.text : id;
-    }).join(' · ')) +
-    exJournal('j10') +
+  inner += '<h3>Veterinary Sign-Off Checklist</h3>' + exTable(['Statement','Evidence attached'], vRows) +
+    '<h3>Sign-Off Summary</h3>' +
+    exField('Our evidence supports the idea that…', t.signoffFrame.a) +
+    exField('…but it cannot show', t.signoffFrame.b) +
     exField('Evidence Checked seal', t.evidenceSealEarned ? 'EARNED — Tested across plants, animals, and humans. Ready for public communication.' : 'Not earned');
   return exBlock('8 · Check the Pattern Beyond Dogs', inner);
 }
@@ -5396,21 +5337,19 @@ function exRanking(){
 }
 function exAudience(){
   const a = state.audience;
-  const rows = SAMPLE_EXPLANATIONS.map(function(s){
-    const j = a.sampleComparison[s.id] || {};
-    return [s.label, s.text].concat(SAMPLE_CRITERIA.map(function(c){
-      return j[c.id] === true ? 'Yes' : (j[c.id] === false ? 'No' : '—');
-    }));
-  });
+  const strongerId = a.sampleComparison.strongerPick;
+  const stronger = SAMPLE_EXPLANATIONS.filter(function(s){ return s.id === strongerId; })[0];
+  const problemId = a.sampleComparison.problemPick;
+  const problem = SAMPLE_PROBLEMS.filter(function(p){ return p.id === problemId; })[0];
   const chk = AUDIENCE_CHECKLIST.map(function(x){
     return [x.text, a.checklist[x.id] === 'yes' ? 'Yes' : (a.checklist[x.id] === 'notyet' ? 'Not yet' : '—')];
   });
   return exBlock('10 · Prepare the Visitor Explanation',
-    exTable(['Draft','Text'].concat(SAMPLE_CRITERIA.map(function(c){ return c.label; })), rows) +
+    exField('Stronger draft selected', stronger ? stronger.label : '—') +
+    exField('Problem identified in the weaker draft', problem ? problem.text : '—') +
     '<h3>Audience Checklist</h3>' + exTable(['Criterion','Student judgement'], chk) +
-    exField('Layer 1 — What Genetics Investigators Found', a.scientificExplanation) +
-    exField('Layer 2 — Visitor-friendly explanation', a.visitorExplanation) +
-    exJournal('j11'));
+    exField('Layer 1 — Your Approved Scientific Explanation', a.scientificExplanation) +
+    exField('Layer 2 — Visitor-friendly explanation', a.visitorExplanation));
 }
 function exDisplay(boardHtml){
   const d = state.display;
@@ -5425,7 +5364,12 @@ function exDisplay(boardHtml){
     '<div class="ex-board">' + (boardHtml || '<p class="ex-empty">No display was generated.</p>') + '</div>');
 }
 function exClose(){
+  const fq = VISITOR_QUESTIONS.filter(function(q){ return q.id === state.visitorWall.finalSelectedQuestion; })[0];
+  const ev = evidenceById(state.visitorWall.finalEvidenceId);
   return exBlock('12 · Case Close',
+    exField('Visitor question answered', fq ? fq.text : '—') +
+    exField('What the student told the visitor', state.visitorWall.finalResponse) +
+    exField('Supporting evidence selected', ev ? ev.text : '—') +
     exField('Case Close Recommendation', caseCloseText()) +
     exField('Professional acknowledgment',
       'Case complete. Thank you, Investigator. Your evidence-based explanation will help shelter visitors understand why puppies from the same family can share inherited traits without looking identical.'));
@@ -5618,17 +5562,17 @@ function renderSectionOnEnter(id){
     case 'section-9-transfer-intro':
       renderTransferOrder(); break;
     case 'section-10-transfer-cases':
-      renderTransferCases(); break;
+      renderTransferCases(); renderCrossSpeciesFrame(); break;
     case 'section-11-verification':
-      renderVerifyExplanation(); renderVerifyChecklist(); renderKsl(); renderSeal(); break;
+      renderVerifyExplanation(); renderVerifyChecklist(); renderSignoff(); renderSeal(); break;
     case 'section-12-evidence-shortlist':
       renderLibrary(); renderTournament(); renderCapacityMeter(); break;
     case 'section-13-public-communication':
-      renderSampleCompare(); renderAudienceChecklist(); renderVisitorFrame(); break;
+      prefillScientificExplanation(); renderSampleCompare(); renderAudienceChecklist(); renderVisitorFrame(); break;
     case 'section-14-display-builder':
       renderSpotlightPicker(); renderTemplateChoices(); renderBuilderChecklist(); renderBoardOutput(); break;
     case 'section-15-wall-case-close':
-      renderWallFinal(); renderWallAnswerPicker(); renderCaseClose(); break;
+      renderWallFinal(); renderWallAnswerPicker(); renderCaseCloseAuto(); break;
     case 'section-16-complete':
       renderComplete(); break;
   }
@@ -5747,8 +5691,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-dp1-advance'))){ advanceDp1(Number(n.dataset.dp1Advance)); return; }
   if ((n = d(t, 'data-ws-dog'))){ toggleWsTile(n.dataset.wsDog, n.dataset.wsLabel); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-link-key'))){ toggleWsLink(n.dataset.linkKey, n.dataset.linkParent); mountDeclaredAssets(); return; }
-  if ((n = d(t, 'data-mx-dog'))){ toggleMatrix(n.dataset.mxDog, n.dataset.mxCat, n.dataset.mxLabel); mountDeclaredAssets(); return; }
-  if ((n = d(t, 'data-mx-loc'))){ setMatrixLocated(n.dataset.mxLoc, n.dataset.mxVal); mountDeclaredAssets(); return; }
+  if ((n = d(t, 'data-mx-dog'))){ confirmMatrixTrait(n.dataset.mxDog, n.dataset.mxConfirm); mountDeclaredAssets(); return; }
 
   /* Section 5 */
   if (t.closest('#btnBoardReview')){ reviewBoard(); return; }
@@ -5764,7 +5707,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-web-cmp'))){ setWebCompare(n.dataset.webCmp, n.dataset.webCmpVal); mountDeclaredAssets(); return; }
 
   /* Section 8 */
-  if ((n = d(t, 'data-issue-tile'))){ setRepairIssue(n.dataset.issueTile, n.dataset.issue); return; }
+  if ((n = d(t, 'data-rvfill-tile'))){ fillRepairRevision(n.dataset.rvfillTile, n.dataset.rvfillText); return; }
   if ((n = d(t, 'data-rvev-tile'))){ toggleRepairEvidence(n.dataset.rvevTile, n.dataset.rvev); return; }
   if ((n = d(t, 'data-cer-slot'))){ toggleCerEvidence(n.dataset.cerSlot, n.dataset.cerEv); return; }
 
@@ -5772,16 +5715,15 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-transfer-first'))){ setTransferOrder(n.dataset.transferFirst); return; }
   if ((n = d(t, 'data-tc-case'))){ setTransferTrait(n.dataset.tcCase, n.dataset.tcTrait, Number(n.dataset.tcOpt)); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-tc-reject'))){ setTransferReject(n.dataset.tcReject); mountDeclaredAssets(); return; }
-  if ((n = d(t, 'data-vf'))){ setVerify(n.dataset.vf, n.dataset.vfVal); return; }
   if ((n = d(t, 'data-vfsrc'))){ toggleVerifySource(n.dataset.vfsrc, n.dataset.vfsrcId); return; }
-  if ((n = d(t, 'data-limit'))){ toggleLimit(n.dataset.limit); return; }
 
   /* Section 12 */
-  if ((n = d(t, 'data-vs-cat'))){ pickVersus(n.dataset.vsCat, Number(n.dataset.vsRound), n.dataset.vsPick); return; }
+  if ((n = d(t, 'data-pick-cat'))){ pickDirect(n.dataset.pickCat, n.dataset.pickEv); return; }
   if ((n = d(t, 'data-rank-cat'))){ setRankReason(n.dataset.rankCat, n.dataset.rankReason); return; }
 
   /* Section 13 */
-  if ((n = d(t, 'data-sc'))){ setSampleCriterion(n.dataset.sc, n.dataset.scCrit, n.dataset.scVal === '1'); return; }
+  if ((n = d(t, 'data-pick-draft'))){ pickStrongerDraft(n.dataset.pickDraft); return; }
+  if ((n = d(t, 'data-pick-problem'))){ pickSampleProblem(n.dataset.pickProblem); return; }
   if ((n = d(t, 'data-ac'))){ setAudienceCheck(n.dataset.ac, n.dataset.acVal); return; }
 
   /* Section 14 */
@@ -5794,6 +5736,7 @@ document.addEventListener('click', function(e){
 
   /* Section 15 */
   if ((n = d(t, 'data-final-q'))){ chooseFinalQuestion(n.dataset.finalQ); return; }
+  if ((n = d(t, 'data-final-ev'))){ chooseFinalEvidence(n.dataset.finalEv); return; }
 });
 
 document.addEventListener('input', function(e){
