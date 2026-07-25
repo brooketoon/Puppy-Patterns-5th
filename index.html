@@ -1732,7 +1732,7 @@ footer.lesson-footer{
 /* ---------- A1. IMAGE ASSETS (relative paths only) ---------- */
 const IMAGE_ASSETS = {
   backgrounds: {
-    shelterAdoptionEvent: 'images/shelter-adoption-event.webp'
+    shelterAdoptionEvent: 'images/shelter-adoption-event.webp.png'
   },
   characters: {
     adoptionCoordinator: 'images/adoption-coordinator.png',
@@ -1740,31 +1740,31 @@ const IMAGE_ASSETS = {
   },
   dogs: {
     case: {
-      parent1: 'images/parent-1-case.webp',
-      parent2: 'images/parent-2-case.webp',
-      willow: 'images/willow-case.webp',
-      scout: 'images/scout-case.webp',
-      poppy: 'images/poppy-case.webp',
-      milo: 'images/milo-case.webp',
-      juniper: 'images/juniper-case.webp'
+      parent1: 'images/parent-1-case.webp.png',
+      parent2: 'images/parent-2-case.webp.png',
+      willow: 'images/willow-case.webp.png',
+      scout: 'images/scout-case.webp.png',
+      poppy: 'images/poppy-case.webp.png',
+      milo: 'images/milo-case.webp.png',
+      juniper: 'images/juniper-case.webp.png'
     },
     display: {
-      parent1: 'images/parent-1-display.webp',
-      parent2: 'images/parent-2-display.webp',
-      willow: 'images/willow-display.webp',
-      scout: 'images/scout-display.webp',
-      poppy: 'images/poppy-display.webp',
-      milo: 'images/milo-display.webp',
-      juniper: 'images/juniper-display.webp'
+      parent1: 'images/parent-1-display.webp.png',
+      parent2: 'images/parent-2-display.webp.png',
+      willow: 'images/willow-display.webp.png',
+      scout: 'images/scout-display.webp.png',
+      poppy: 'images/poppy-display.webp.png',
+      milo: 'images/milo-display.webp.png',
+      juniper: 'images/juniper-display.webp.png'
     },
     group: {
-      familyReveal: 'images/puppy-family-reveal.webp',
-      familyDisplay: 'images/puppy-family-display.webp'
+      familyReveal: 'images/puppy-family-reveal.webp.png',
+      familyDisplay: 'images/puppy-family-display.webp.png'
     }
   },
   transfer: {
-    plantFamily: 'images/plant-family-grid.webp',
-    humanFamily: 'images/human-family-lineup.webp'
+    plantFamily: 'images/plant-family-grid.webp.png',
+    humanFamily: 'images/human-family-lineup.webp.png'
   }
 };
 
@@ -5701,7 +5701,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-chain-dog'))){ toggleChainObs(n.dataset.chainDog, n.dataset.chainLabel); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-chainlink-key'))){ toggleChainLink(n.dataset.chainlinkKey, n.dataset.chainlinkParent); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-chain-diff'))){ toggleChainDiff(n.dataset.chainDiff); mountDeclaredAssets(); return; }
-  if ((n = d(t, 'data-web-puppy'))){ chooseWebPuppy(n.dataset.webPuppy); mountDeclaredAssets(); return; }
+  if ((n = d(t, 'data-web-puppy'))){ chooseWebPuppy(n.dataset.webp.pnguppy); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-web-cat'))){ toggleWebObs(n.dataset.webCat, n.dataset.webLabel); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-weblink-cat'))){ toggleWebLink(n.dataset.weblinkCat, n.dataset.weblinkParent); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-web-cmp'))){ setWebCompare(n.dataset.webCmp, n.dataset.webCmpVal); mountDeclaredAssets(); return; }
