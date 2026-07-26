@@ -1648,7 +1648,7 @@ footer.lesson-footer{
       <h3 class="title-block">Required for the floor</h3>
       <div id="builderChecklist"></div>
       <div class="btn-row btn-row--center">
-        <button type="button" class="btn btn--launch" id="btnGenerateBoard" disabled>Generate Shelter Display</button>
+        <button type="button" class="btn btn--launch" id="btnGenerateBoard">Generate Shelter Display</button>
         <span class="gate-note" data-gate-note="builder"></span>
       </div>
     </div>
@@ -2519,33 +2519,27 @@ const GATES = {
     if (!journalDone('j1')) return 'Answer Journal Entry 1 before continuing.';
     return '';
   },
+  /* Every gate below checks only whether the last piece of hidden,
+     progressively-revealed content on that page has appeared — not whether
+     every visible field has been filled in. Pages with nothing hidden
+     (Sections 1, 6, 9, 11) carry data-nogate on their button instead, so
+     these reason strings only ever surface as a reminder note there. */
   'section-2-shelter-problem': function(){
-    const placed = Object.keys(state.visitorWall.initialPlacements).length;
-    if (placed < VISITOR_QUESTIONS.length) return 'Place all seven visitor questions on the wall.';
-    if (!state.visitorWall.initialSubmittedAt) return 'Submit your evidence forecast to lock in your first prediction.';
-    if (!state.visitorWall.difficultQuestion) return 'Choose the question that was hardest to place.';
-    if (!journalDone('j2')) return 'Answer Journal Entry 2 before continuing.';
+    if (!state.visitorWall.initialSubmittedAt) return 'Place your questions and submit your evidence forecast to reveal the next step.';
     return '';
   },
   'section-3-briefing-dp1': function(){
-    if (Object.keys(state.evidenceCheck.responses).length < EVIDENCE_CHECK.length) return 'Decide about all four observations in the evidence check.';
-    if (!String(state.evidenceCheck.completionFrame).trim()) return 'Finish the sentence about what makes an observation useful.';
-    if (!state.decisions.dp1Path) return 'Choose an evidence investigation to begin.';
+    if (Object.keys(state.evidenceCheck.responses).length < EVIDENCE_CHECK.length) return 'Decide about all four observations in the evidence check to reveal the next step.';
     return '';
   },
   'section-4-dp1-investigation': function(){
-    if (!dp1Round1Done()) return 'Inspect both parent dogs and finish both reference cards.';
-    if (!dp1Round2Done()) return 'Finish the Willow–Scout contrast map, including the comparison sentence.';
-    if (!dp1Round3Done()) return 'Complete the matrix row for every puppy and sort the shelter records.';
-    if (!journalDone('j4')) return 'Answer Journal Entry 3 before continuing.';
+    if (!dp1Round3Done()) return 'Complete all three investigation rounds to reveal your case summary.';
     return '';
   },
   'section-5-overview-convergence1': function(){
-    if (!state.dp1.otherPathOverviewViewed) return 'Open the complementary shelter investigation report.';
     const m = boardMinimums();
     if (!m.ok) return m.msg;
-    if (!state.convergence1.reviewed) return 'Review your evidence board before continuing.';
-    if (!String(state.convergence1.journalResponse).trim()) return 'Answer the combined-evidence question before continuing.';
+    if (!state.convergence1.reviewed) return 'Review your evidence board to reveal the next step.';
     return '';
   },
   'section-6-dp2-choice': function(){
@@ -2553,17 +2547,20 @@ const GATES = {
     return '';
   },
   'section-7-dp2-investigation': function(){
-    const r = dp2Done();
-    if (r) return r;
+    const qid = state.decisions.dp2Question;
+    if (!qid) return 'Choose a visitor question first.';
+    if (qid === 'sibling'){
+      if (!String(chainState().merged).trim()) return 'Complete the comparison chain to reveal your answer box.';
+    } else {
+      if (!state.decisions.dp2Puppy) return 'Choose which puppy to investigate.';
+      if (!String(webState().note).trim()) return 'Complete the trait web to reveal your answer box.';
+    }
     return '';
   },
   'section-8-convergence2': function(){
-    if (Object.keys(state.convergence2.tilePlacements).length < REPAIR_TILES.length) return 'Sort every statement into Keep, Revise, or Remove.';
+    if (Object.keys(state.convergence2.tilePlacements).length < REPAIR_TILES.length) return 'Sort every statement into Keep, Revise, or Remove to reveal your explanation box.';
     const pending = revisePending();
     if (pending) return pending;
-    const f = state.convergence2.finalExplanation;
-    if (!String(f.evidence).trim() || !String(f.reasoning).trim()) return 'Complete the Evidence and Reasoning parts of your explanation.';
-    if (attachedEvidenceCount() < 3) return 'Attach evidence for a similarity, a sibling difference, and a different combination.';
     return '';
   },
   'section-9-transfer-intro': function(){
@@ -2571,10 +2568,8 @@ const GATES = {
     return '';
   },
   'section-10-transfer-cases': function(){
-    if (!transferCaseDone('plant')) return 'Finish both transfer cases to verify the explanation — the plant case is not complete.';
-    if (!transferCaseDone('human')) return 'Finish both transfer cases to verify the explanation — the human case is not complete.';
-    const cf = state.transfer.crossSpeciesFinding;
-    if (!String(cf.a).trim() || !String(cf.b).trim()) return 'Complete the cross-species finding before continuing.';
+    if (!transferCaseDone('plant')) return 'Finish the plant verification case to reveal the cross-species question.';
+    if (!transferCaseDone('human')) return 'Finish the human verification case to reveal the cross-species question.';
     return '';
   },
   'section-11-verification': function(){
@@ -2583,37 +2578,28 @@ const GATES = {
       return r && r.sources && r.sources.length;
     }).length;
     if (done < VERIFY_ITEMS.length) return 'Attach supporting evidence to all three claims.';
-    const sf = state.transfer.signoffFrame;
-    if (!String(sf.a).trim() || !String(sf.b).trim()) return 'Complete both parts of the sign-off summary.';
     return '';
   },
   'section-12-evidence-shortlist': function(){
     for (let i = 0; i < RANK_CATEGORIES.length; i++){
       const c = RANK_CATEGORIES[i], r = state.ranking[c.id];
-      if (!r.winner) return 'Finish the ' + c.label + ' selection.';
-      if (!r.reason) return 'Choose a reason for your ' + c.label + ' selection.';
+      if (!r.winner) return 'Finish the ' + c.label + ' selection to reveal the reason choices.';
+      if (!r.reason) return 'Choose a reason for your ' + c.label + ' selection to reveal the next step.';
     }
-    if (!String(state.ranking.overallReason).trim()) return 'Finish the sentence explaining your three choices.';
     return '';
   },
   'section-13-public-communication': function(){
-    if (!state.audience.sampleComparison.strongerPick || !state.audience.sampleComparison.problemPick) return 'Choose the stronger draft and identify one problem in the weaker one.';
-    if (!String(state.audience.scientificExplanation).trim()) return 'Review your approved scientific explanation.';
-    const vf = state.audience.visitorFrame;
-    if (!String(vf.a).trim() || !String(vf.b).trim()) return 'Complete the visitor-friendly frame.';
-    if (Object.keys(state.audience.checklist).length < AUDIENCE_CHECKLIST.length) return 'Work through the audience checklist.';
+    if (!state.audience.sampleComparison.strongerPick) return 'Choose the stronger draft to reveal the next step.';
     return '';
   },
   'section-14-display-builder': function(){
-    if (!state.display.generated) return 'Generate your shelter display before continuing.';
+    if (!state.display.generated) return 'Generate your shelter display to reveal the display proof.';
     return '';
   },
   'section-15-wall-case-close': function(){
     if (!state.visitorWall.finalSelectedQuestion) return 'Choose one visitor question your display can answer.';
     if (!String(state.visitorWall.finalResponse).trim()) return 'Write what you would tell the visitor.';
-    if (!state.visitorWall.finalEvidenceId) return 'Select the evidence card that supports your answer.';
-    const r = state.caseClose.recommendation;
-    if (!String(r.edited || r.auto).trim()) return 'Review the generated Case Close Recommendation.';
+    if (!state.visitorWall.finalEvidenceId) return 'Select the evidence card that supports your answer, to reveal the generated recommendation.';
     return '';
   }
 };
@@ -3062,11 +3048,9 @@ function renderWallInitial(){
         const n = el('wallSubmitNote');
         const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
         if (n) n.textContent = left ? left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.' : '';
-        const b = el('btnWallSubmit'); if (b) b.disabled = left > 0;
       }
     });
     const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
-    const b = el('btnWallSubmit'); if (b) b.disabled = left > 0;
     const n = el('wallSubmitNote'); if (n && left) n.textContent = left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.';
   } else {
     mount.innerHTML =
@@ -4795,7 +4779,7 @@ function renderBuilderChecklist(){
     }).join('') + '</div>';
   const missing = reqs.filter(function(r){ return !r.ok; });
   const btn = el('btnGenerateBoard'), note = qs('[data-gate-note="builder"]');
-  if (btn) btn.disabled = missing.length > 0;
+  if (btn) btn.disabled = false;
   if (note) note.textContent = missing.length ? 'Still needed: ' + missing.map(function(m){ return m.text.toLowerCase(); }).join(', ') + '.' : '';
 }
 
@@ -5752,7 +5736,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-spot-trait'))){ toggleSpotlightTrait(n.dataset.spotTrait); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-spot-ev'))){ toggleSpotlightEvidence(n.dataset.spotEv); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-template'))){ chooseTemplate(n.dataset.template); return; }
-  if (t.closest('#btnGenerateBoard')){ if (!el('btnGenerateBoard').disabled) generateBoard(); return; }
+  if (t.closest('#btnGenerateBoard')){ generateBoard(); return; }
   if (t.closest('#btnReviseDisplay')){ reviseDisplay(); return; }
 
   /* Section 15 */
