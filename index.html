@@ -59,6 +59,10 @@
 *,*::before,*::after{box-sizing:border-box;}
 
 html{
+  /* Base size bumped up for Grade 5 readability. Nearly every component in
+     this lesson is sized in rem, so this one change scales body text,
+     headings, buttons, chips, and spacing proportionally throughout. */
+  font-size:18px;
   -webkit-text-size-adjust:100%;
   /* Keeps keyboard focus, screen-reader navigation, and any programmatic
      scrollIntoView from landing underneath the fixed header + tracker. */
@@ -70,8 +74,8 @@ body{
   font-family:var(--font);
   color:var(--ink);
   background:var(--page-bg);
-  line-height:1.6;
-  font-size:16px;
+  line-height:1.65;
+  font-size:1rem;
   overflow-x:hidden;
 }
 
@@ -333,6 +337,11 @@ img{max-width:100%;}
 .asset--tall{aspect-ratio:3/4;}
 .asset--char{max-width:130px;aspect-ratio:1/1;border-radius:50%;flex:0 0 auto;}
 .asset--char.is-pending .asset__ph{min-height:0;}
+/* Character portraits often ship with extra transparent canvas padding
+   around the illustration. Scaling up and biasing the crop toward the
+   upper-center reliably frames the face/torso instead of showing empty
+   space at the circle's edge. */
+.asset--char img{transform:scale(1.35);transform-origin:center 30%;}
 
 .speaker-row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;}
 .speaker-row__body{flex:1 1 260px;min-width:0;}
@@ -1248,7 +1257,7 @@ footer.lesson-footer{
   <div class="card">
     <p class="eyebrow eyebrow--gold">Puppy Family Pattern Board</p>
     <h3 class="title-block">Build the shelter's evidence board</h3>
-    <p class="helper" style="margin-bottom:14px;">Move each observation from the evidence tray onto the board. Every observation from both investigations is available, plus the shelter records.</p>
+    <p class="helper" style="margin-bottom:14px;">Move at least one observation from the evidence tray onto each section of the board. Evidence from both investigations is available, plus the shelter records.</p>
     <div id="patternBoard"></div>
   </div>
 
@@ -1633,7 +1642,7 @@ footer.lesson-footer{
       <h3 class="title-block">Required for the floor</h3>
       <div id="builderChecklist"></div>
       <div class="btn-row btn-row--center">
-        <button type="button" class="btn btn--launch" id="btnGenerateBoard">Generate Shelter Display</button>
+        <button type="button" class="btn btn--launch" id="btnGenerateBoard" disabled>Generate Shelter Display</button>
         <span class="gate-note" data-gate-note="builder"></span>
       </div>
     </div>
@@ -1750,31 +1759,31 @@ const IMAGE_ASSETS = {
   },
   dogs: {
     case: {
-      parent1: 'images/parent-1-case.webp',
-      parent2: 'images/parent-2-case.webp',
-      willow: 'images/willow-case.webp',
-      scout: 'images/scout-case.webp',
-      poppy: 'images/poppy-case.webp',
-      milo: 'images/milo-case.webp',
-      juniper: 'images/juniper-case.webp'
+      parent1: 'images/parent-1.webp.png',
+      parent2: 'images/parent-2.webp.png',
+      willow: 'images/willow.webp.png',
+      scout: 'images/scout.webp.png',
+      poppy: 'images/poppy.webp.png',
+      milo: 'images/milo.webp.png',
+      juniper: 'images/juniper.webp.png'
     },
     display: {
-      parent1: 'images/parent-1-display.webp',
-      parent2: 'images/parent-2-display.webp',
-      willow: 'images/willow-display.webp',
-      scout: 'images/scout-display.webp',
-      poppy: 'images/poppy-display.webp',
-      milo: 'images/milo-display.webp',
-      juniper: 'images/juniper-display.webp'
+      parent1: 'images/parent-1.webp.png',
+      parent2: 'images/parent-2.webp.png',
+      willow: 'images/willow.webp.png',
+      scout: 'images/scout.webp.png',
+      poppy: 'images/poppy.webp.png',
+      milo: 'images/milo.webp.png',
+      juniper: 'images/juniper.webp.png'
     },
     group: {
-      familyReveal: 'images/puppy-family-reveal.webp',
+      familyReveal: 'images/puppy-family-reveal.webp.png',
       familyDisplay: 'images/puppy-family-display.webp.png'
     }
   },
   transfer: {
-    plantFamily: 'images/plant-family-grid.webp',
-    humanFamily: 'images/human-family-lineup.webp'
+    plantFamily: 'images/plant-family-grid.webp.png',
+    humanFamily: 'images/human-family-lineup.webp.png'
   }
 };
 
@@ -2613,11 +2622,10 @@ function updateGates(){
   const reason = gateReason(state.currentSection);
   qsa('[data-next]', sec).forEach(function(btn){
     if (btn.hasAttribute('data-nogate')) return;
-    /* Progression is never blocked. The reason (if any) is still shown as a
-       gentle reminder of what's unfinished, but students can always continue. */
-    btn.disabled = false;
-    btn.setAttribute('aria-disabled', 'false');
-    if (reason) btn.title = reason; else btn.removeAttribute('title');
+    const blocked = !!reason;
+    btn.disabled = blocked;
+    btn.setAttribute('aria-disabled', blocked ? 'true' : 'false');
+    if (blocked) btn.title = reason; else btn.removeAttribute('title');
   });
   const note = qs('.btn-row [data-gate-note]:not([data-gate-note="dp1r1"]):not([data-gate-note="dp1r2"]):not([data-gate-note="builder"])', sec);
   if (note) note.textContent = reason;
@@ -3048,9 +3056,11 @@ function renderWallInitial(){
         const n = el('wallSubmitNote');
         const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
         if (n) n.textContent = left ? left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.' : '';
+        const b = el('btnWallSubmit'); if (b) b.disabled = left > 0;
       }
     });
     const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
+    const b = el('btnWallSubmit'); if (b) b.disabled = left > 0;
     const n = el('wallSubmitNote'); if (n && left) n.textContent = left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.';
   } else {
     mount.innerHTML =
@@ -3608,8 +3618,7 @@ function renderConvergence1Reports(){
    everywhere else, so correctness can never drift from DOG_DATA. */
 const SIMILARITY_PICKS = [
   { dog:'willow', label:'mark-paws' },
-  { dog:'scout',  label:'ears-floppy' },
-  { dog:'poppy',  label:'fur-wavy' }
+  { dog:'scout',  label:'ears-floppy' }
 ];
 function evidenceItems(){
   const out = [];
@@ -3631,17 +3640,13 @@ function evidenceItems(){
     text:'Willow\u2019s coat is brown and cream while Scout\u2019s coat is medium brown.' });
   out.push({ id:'ev-d2', dataset:'feature', kind:'differ', dogs:['willow','scout'], multi:true, meta:'Feature evidence',
     text:'Willow has mostly upright ears while Scout has floppy ears.' });
-  out.push({ id:'ev-d3', dataset:'feature', kind:'differ', dogs:['poppy','milo'], multi:true, meta:'Feature evidence',
-    text:'Poppy has wavy fur and floppy ears; Milo has smooth fur and mostly upright ears.' });
   /* Combination items. */
-  out.push({ id:'ev-c1', dataset:'coat', kind:'combo', dogs:PUPPY_KEYS.slice(), multi:true, meta:'Coat evidence',
-    text:'Across all five puppies, no two show the same full set of coat colors and markings.' });
   out.push({ id:'ev-c3', dataset:'cross', kind:'combo', dogs:['juniper'], meta:'Both datasets',
     text:'Juniper shows traits observed in both parent dogs, but neither parent has Juniper\u2019s exact combination.' });
   out.push({ id:'ev-c4', dataset:'cross', kind:'combo', dogs:['willow'], meta:'Both datasets',
     text:'Willow shows a coat like one parent and ears like the other, so she matches neither parent exactly.' });
-  /* Not-useful record items (all 3 from the reduced 5-record set). */
-  recordItems().filter(function(r){ return !r.relevant; }).forEach(function(r){
+  /* Not-useful record items (2 of the reduced 5-record set). */
+  recordItems().filter(function(r){ return !r.relevant; }).slice(0, 2).forEach(function(r){
     out.push({ id:'ev-' + r.id, dataset:'record', kind:'notuseful', dogs:[r.dog], meta:RECORD_TYPE_LABEL[r.type] || 'Record', text:r.text });
   });
   return out;
@@ -4784,7 +4789,7 @@ function renderBuilderChecklist(){
     }).join('') + '</div>';
   const missing = reqs.filter(function(r){ return !r.ok; });
   const btn = el('btnGenerateBoard'), note = qs('[data-gate-note="builder"]');
-  if (btn) btn.disabled = false;
+  if (btn) btn.disabled = missing.length > 0;
   if (note) note.textContent = missing.length ? 'Still needed: ' + missing.map(function(m){ return m.text.toLowerCase(); }).join(', ') + '.' : '';
 }
 
@@ -5624,7 +5629,7 @@ function renderDp1Workspace(){
 function advanceDp1(round){
   const reason = round === 2 ? (dp1Round1Done() ? '' : 'Inspect both parent dogs before continuing.')
                              : (dp1Round2Done() ? '' : 'Finish the contrast map before continuing.');
-  if (reason) toast(reason);
+  if (reason){ toast(reason); return; }
   state.dp1.round = Math.max(state.dp1.round, round);
   state.currentInternalStep = 'dp1-round-' + round;
   logEvent('dp1-round-advance', { round:round });
@@ -5638,8 +5643,8 @@ function updateLocalGates(sec){
   if (n1) n1.textContent = dp1Round1Done() ? '' : 'Inspect both parent dogs before continuing.';
   if (n2) n2.textContent = dp1Round2Done() ? '' : 'Complete all three steps of the contrast map before continuing.';
   const b1 = qs('[data-dp1-advance="2"]', sec), b2 = qs('[data-dp1-advance="3"]', sec);
-  if (b1) b1.disabled = false;
-  if (b2) b2.disabled = false;
+  if (b1) b1.disabled = !dp1Round1Done();
+  if (b2) b2.disabled = !dp1Round2Done();
 }
 
 /* ---------- I3. EVENT DELEGATION ---------- */
@@ -5741,7 +5746,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-spot-trait'))){ toggleSpotlightTrait(n.dataset.spotTrait); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-spot-ev'))){ toggleSpotlightEvidence(n.dataset.spotEv); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-template'))){ chooseTemplate(n.dataset.template); return; }
-  if (t.closest('#btnGenerateBoard')){ generateBoard(); return; }
+  if (t.closest('#btnGenerateBoard')){ if (!el('btnGenerateBoard').disabled) generateBoard(); return; }
   if (t.closest('#btnReviseDisplay')){ reviseDisplay(); return; }
 
   /* Section 15 */
