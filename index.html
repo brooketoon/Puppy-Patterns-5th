@@ -1201,7 +1201,7 @@ footer.lesson-footer{
       <p class="dialogue-quote" style="margin:0 0 6px;">Maybe Willow and Scout are unusual. What about the other puppies?</p>
       <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">One comparison is not enough for the display. Check whether the pattern continues across the rest of the litter.</span><cite>Meg</cite></p>
     </div>
-    <p class="helper" style="margin-bottom:14px;">Poppy, Milo, and Juniper's traits are already in the case file. For each puppy, tap the trait that also appears in the parent generation.</p>
+    <p class="helper" style="margin-bottom:14px;">Poppy, Milo, and Juniper's traits are already in the case file. For each puppy, tap every trait that also appears in the parent generation — more than one can be true.</p>
     <div id="bridgeMatrix"></div>
     <div class="card card--cream" style="margin-top:18px;">
       <p class="eyebrow eyebrow--gold">Shelter Records</p>
@@ -1803,7 +1803,7 @@ const DOG_DATA = {
   parent2: {
     name: 'Parent 2', generation: 'parent',
     coatColor: 'brown and cream', fur: 'medium-length and wavy', ears: 'floppy',
-    markings: ['large white chest patch', 'white facial blaze']
+    markings: ['white paws', 'large white chest patch', 'white facial blaze']
   },
   willow: {
     name: 'Willow', generation: 'offspring',
@@ -3439,10 +3439,10 @@ function renderBridgeMatrix(){
 
   let html = '<div class="table-scroll"><table class="data"><thead><tr><th>Puppy</th>' +
     cats.map(function(c){ return '<th>' + esc(CATEGORY_LABEL[c]) + '</th>'; }).join('') +
-    '<th>Tap the trait that also appears in the parent generation</th></tr></thead><tbody>';
+    '<th>Tap every trait that also appears in the parent generation</th></tr></thead><tbody>';
 
   BRIDGE_KEYS.forEach(function(dk){
-    const row = state.dp1.bridgeMatrix[dk] || { confirmed:null };
+    const row = state.dp1.bridgeMatrix[dk] || { confirmed:[] };
     html += '<tr><th scope="row"><div style="width:78px;">' +
       assetMarkup('dogs.case.' + dk, 'Case portrait of ' + dogName(dk), 'asset--portrait') +
       '</div>' + esc(dogName(dk)) + '</th>';
@@ -3454,7 +3454,7 @@ function renderBridgeMatrix(){
     });
     html += '<td><div class="chip-set">' +
       traitLabelsForRow.map(function(lid){
-        const on = row.confirmed === lid;
+        const on = (row.confirmed || []).indexOf(lid) > -1;
         return '<button type="button" class="chip' + (on ? ' is-selected' : '') + '" data-mx-dog="' + dk + '" data-mx-confirm="' + lid + '" aria-pressed="' + on + '">' + esc(labelText(lid)) + '</button>';
       }).join('') + '</div></td></tr>';
   });
@@ -3462,15 +3462,18 @@ function renderBridgeMatrix(){
   mount.innerHTML = html;
 }
 function confirmMatrixTrait(dk, lid){
-  if (!state.dp1.bridgeMatrix[dk]) state.dp1.bridgeMatrix[dk] = {};
-  state.dp1.bridgeMatrix[dk].confirmed = lid;
-  logEvent('matrix-confirm', { dog:dk, label:lid });
+  if (!state.dp1.bridgeMatrix[dk]) state.dp1.bridgeMatrix[dk] = { confirmed:[] };
+  if (!state.dp1.bridgeMatrix[dk].confirmed) state.dp1.bridgeMatrix[dk].confirmed = [];
+  const arr = state.dp1.bridgeMatrix[dk].confirmed;
+  const i = arr.indexOf(lid);
+  if (i > -1) arr.splice(i, 1); else arr.push(lid);
+  logEvent('matrix-confirm', { dog:dk, label:lid, on:i < 0 });
   renderBridgeMatrix(); saveState(); updateGates();
 }
 function dp1Round3Done(){
   const matrixOk = BRIDGE_KEYS.every(function(dk){
     const row = state.dp1.bridgeMatrix[dk];
-    return row && !!row.confirmed;
+    return row && row.confirmed && row.confirmed.length > 0;
   });
   return matrixOk && Object.keys(state.dp1.shelterRecordSelections).length >= recordItems().length;
 }
@@ -5192,7 +5195,7 @@ function exDp1(){
   const mxRows = BRIDGE_KEYS.map(function(dk){
     const row = state.dp1.bridgeMatrix[dk] || {};
     return [dogName(dk)].concat(path.categories.map(function(c){ return correctLabelsFor(dk, c).map(labelText).join(', '); }))
-      .concat([row.confirmed ? labelText(row.confirmed) : '—']);
+      .concat([(row.confirmed && row.confirmed.length) ? row.confirmed.map(labelText).join(', ') : '—']);
   });
   const recRows = recordItems().map(function(r){
     const z = state.dp1.shelterRecordSelections[r.id];
@@ -5206,7 +5209,7 @@ function exDp1(){
     (linkRows.length ? exTable(['Puppy','Observation','Similar trait appears in'], linkRows) : '<p class="ex-empty">No connections were made.</p>') +
     exField('Comparison', 'Willow and Scout look different because ' + (ws.compareA || '…') + ', but both show family patterns because ' + (ws.compareB || '…') + '.') +
     '<h3>Three-Puppy Matrix</h3>' +
-    exTable(['Puppy'].concat(path.categories.map(function(c){ return CATEGORY_LABEL[c]; })).concat(['Trait confirmed as family evidence']), mxRows) +
+    exTable(['Puppy'].concat(path.categories.map(function(c){ return CATEGORY_LABEL[c]; })).concat(['Traits confirmed as family evidence']), mxRows) +
     '<h3>Shelter Record Relevance</h3>' + exTable(['Dog','Record entry','Type','Student decision'], recRows) +
     exJournal('j4') +
     exField('Complementary report reviewed', state.dp1.otherPathOverviewViewed ? DP1_PATHS[otherPathId(pid)].name + ' — reviewed' : 'Not reviewed'));
