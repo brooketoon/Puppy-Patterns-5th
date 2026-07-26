@@ -333,6 +333,10 @@ img{max-width:100%;}
 .asset__ph-label{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600);}
 .asset__ph-path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.66rem;color:var(--gray-600);word-break:break-all;max-width:100%;}
 .asset--portrait{aspect-ratio:1/1;}
+/* Dog portraits must show the whole animal, not a tight cover-crop that cuts
+   off ears and the top of the head. Contain shows the full photo inside the
+   fixed square box, with the box background filling any letterboxed edges. */
+.asset--portrait img{object-fit:contain;background:var(--gray-50);}
 .asset--wide{aspect-ratio:16/9;}
 .asset--tall{aspect-ratio:3/4;}
 .asset--char{max-width:130px;aspect-ratio:1/1;border-radius:50%;flex:0 0 auto;}
