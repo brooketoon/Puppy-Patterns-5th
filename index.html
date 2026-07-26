@@ -338,14 +338,16 @@ img{max-width:100%;}
    fixed square box, with the box background filling any letterboxed edges. */
 .asset--portrait img{object-fit:contain;background:var(--gray-50);}
 .asset--wide{aspect-ratio:16/9;}
+/* Group photos (the full puppy family, plant/human transfer images) must
+   show the entire picture rather than crop to fill a fixed box. */
+.asset--wide img{object-fit:contain;background:var(--gray-50);}
 .asset--tall{aspect-ratio:3/4;}
-.asset--char{max-width:130px;aspect-ratio:1/1;border-radius:50%;flex:0 0 auto;}
+.asset--char{max-width:160px;aspect-ratio:4/5;border-radius:16px;flex:0 0 auto;background:var(--gray-50);}
 .asset--char.is-pending .asset__ph{min-height:0;}
-/* Character portraits often ship with extra transparent canvas padding
-   around the illustration. Scaling up and biasing the crop toward the
-   upper-center reliably frames the face/torso instead of showing empty
-   space at the circle's edge. */
-.asset--char img{transform:scale(1.35);transform-origin:center 30%;}
+/* A rounded rectangle (rather than a tight circle) with contain shows the
+   whole character illustration cleanly, with no corner-cropping artifacts
+   and no risk of cutting off part of the figure. */
+.asset--char img{object-fit:contain;}
 
 .speaker-row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;}
 .speaker-row__body{flex:1 1 260px;min-width:0;}
