@@ -114,10 +114,10 @@ img{max-width:100%;}
 .brand{display:flex;align-items:center;gap:10px;min-width:0;}
 .brand-pill{
   background:var(--gold);color:#3A2405;font-weight:800;font-size:.66rem;
-  letter-spacing:.09em;text-transform:upper;padding:5px 10px;border-radius:999px;white-space:nowrap;
+  letter-spacing:.09em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;
 }
 .brand-text{display:flex;flex-direction:column;min-width:0;}
-.brand-series{font-size:.66rem;letter-spacing:.1em;text-transform:upper;color:#F0D9E6;font-weight:700;}
+.brand-series{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#F0D9E6;font-weight:700;}
 .brand-title{font-size:.95rem;font-weight:800;line-height:1.2;}
 
 .header-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
@@ -155,7 +155,7 @@ img{max-width:100%;}
 .tracker.is-visible{display:block;}
 .tracker__inner{max-width:1180px;margin:0 auto;padding:8px 14px;}
 .tracker__title{
-  font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:upper;
+  font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
   color:var(--berry);margin-bottom:5px;
 }
 .tracker__path{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;}
@@ -173,7 +173,7 @@ img{max-width:100%;}
 }
 .tstep.is-set .tstep__icon{background:var(--sage-dark);color:#fff;}
 .tstep__body{min-width:0;}
-.tstep__label{font-size:.6rem;letter-spacing:.09em;text-transform:upper;font-weight:800;color:var(--gray-600);}
+.tstep__label{font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:var(--gray-600);}
 .tstep__value{font-size:.82rem;font-weight:700;color:var(--gray-700);overflow-wrap:break-word;}
 .tstep.is-set .tstep__value{color:var(--sage-dark);}
 .tconnector{flex:0 0 14px;align-self:center;height:2px;background:var(--gray-300);border-radius:2px;}
@@ -348,6 +348,16 @@ img{max-width:100%;}
 .dialogue-quote:first-of-type{margin-top:14px;}
 .dialogue-quote::before{content:"\201C";}
 .dialogue-quote::after{content:"\201D";}
+/* When a quote carries a <cite> attribution, the closing mark must land
+   right after the spoken text — not after the cite, which would otherwise
+   float a stray quotation mark below the speaker's name. Cite-bearing
+   quotes add .dialogue-quote--cited and wrap their spoken text in
+   .quote-text so the marks attach to the right span. Plain, citeless
+   dialogue-quote paragraphs are unaffected and keep the rule above. */
+.dialogue-quote--cited::before,
+.dialogue-quote--cited::after{content:"";}
+.dialogue-quote--cited .quote-text::before{content:"\201C";}
+.dialogue-quote--cited .quote-text::after{content:"\201D";}
 .dialogue-quote cite{
   display:block;margin-top:3px;font-style:normal;font-weight:700;
   font-size:.78rem;color:var(--berry-dark);
@@ -364,10 +374,10 @@ img{max-width:100%;}
 }
 .dog-card:hover{border-color:var(--coral);box-shadow:var(--shadow);}
 .dog-card.is-open{border-color:var(--sage-dark);box-shadow:var(--shadow);}
-.dog-card__cap{padding:9px 11px;}
-.dog-card__name{font-size:.94rem;font-weight:800;color:var(--berry-dark);}
-.dog-card__gen{font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gray-600);}
-.dog-card__status{font-size:.7rem;font-weight:700;color:var(--sage-dark);margin-top:3px;}
+.dog-card__cap{padding:9px 11px;display:flex;flex-direction:column;gap:2px;}
+.dog-card__name{font-size:.94rem;font-weight:800;color:var(--berry-dark);display:block;}
+.dog-card__gen{font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gray-600);display:block;}
+.dog-card__status{font-size:.7rem;font-weight:700;color:var(--sage-dark);margin-top:3px;display:block;}
 
 .trait-line{display:flex;flex-wrap:wrap;gap:4px 7px;font-size:.83rem;color:var(--gray-700);padding:3px 0;align-items:flex-start;}
 .trait-line b{color:var(--berry-dark);max-width:100%;}
@@ -638,9 +648,9 @@ table.data td.is-done{background:var(--sage-light);}
   border-radius:var(--radius-sm);overflow:hidden;
 }
 .tm-card.is-featured{border-color:var(--gold-dark);box-shadow:0 0 0 3px rgba(230,169,61,.3);}
-.tm-card__cap{padding:8px 9px;}
-.tm-card__name{font-size:.84rem;font-weight:800;color:var(--berry-dark);}
-.tm-card__traits{font-size:.68rem;color:var(--gray-600);line-height:1.45;}
+.tm-card__cap{padding:8px 9px;display:flex;flex-direction:column;gap:2px;}
+.tm-card__name{font-size:.84rem;font-weight:800;color:var(--berry-dark);display:block;}
+.tm-card__traits{font-size:.68rem;color:var(--gray-600);line-height:1.45;display:block;}
 .trait-map__link{width:2px;height:22px;background:var(--gray-300);}
 
 /* ---------- 21. RESPONSIVE ---------- */
@@ -998,7 +1008,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-2-shelter-problem">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-2-shelter-problem">See the Visitor Questions →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1055,7 +1065,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-3-briefing-dp1">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-3-briefing-dp1">Meet the Veterinarian →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1123,7 +1133,7 @@ footer.lesson-footer{
 </section>
 
 <!-- ============ SECTION 4 — DP1 INVESTIGATION WORKSPACE ============ -->
-<section class="section" id="section-4-dp1-investigation" aria-label="Decision Point 1 investigation workspace">
+<section class="section" id="section-4-dp1-investigation" aria-label="Evidence assignment investigation workspace">
   <div class="card card--flat" style="background:transparent;border:none;padding:0;box-shadow:none;">
     <p class="eyebrow eyebrow--coral" id="dp1PathLabel">Investigation</p>
     <h2 class="title-section">Building Your Case File</h2>
@@ -1135,12 +1145,12 @@ footer.lesson-footer{
     <p class="eyebrow">Round 1</p>
     <h3 class="title-block">Build the Parent Reference Cards</h3>
     <div class="card card--vet card--flat" style="margin:0 0 16px;border-left:4px solid var(--sage-dark);">
-      <p class="dialogue-quote" style="margin:0;">If we are going to say a puppy shares a family trait, we need a record of what appears in the parents first. Build the reference cards from what you can actually observe.<cite>Shelter Veterinarian</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">If we are going to say a puppy shares a family trait, we need a record of what appears in the parents first. Build the reference cards from what you can actually observe.</span><cite>Shelter Veterinarian</cite></p>
     </div>
     <p class="helper" style="margin-bottom:14px;">Study the same kind of evidence on both parent dogs, then build a reference card for each one. You choose the labels — the shelter does not hand you a finished card.</p>
     <div id="parentViewer"></div>
     <div class="btn-row btn-row--right">
-      <button type="button" class="btn btn--primary" data-dp1-advance="2">Continue to the Anchor Siblings →</button>
+      <button type="button" class="btn btn--primary" data-dp1-advance="2">Check Willow and Scout →</button>
       <span class="gate-note" data-gate-note="dp1r1"></span>
     </div>
   </div>
@@ -1158,12 +1168,12 @@ footer.lesson-footer{
     </div>
     <div class="card card--coordinator card--flat" style="margin:0 0 16px;border-left:4px solid var(--berry);">
       <p class="dialogue-quote" style="margin:0 0 6px;">This is the question I hear most often.</p>
-      <p class="dialogue-quote" style="margin:0;">Start with what is different. Then check whether each puppy still connects to the parent reference.<cite>Meg</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">Start with what is different. Then check whether each puppy still connects to the parent reference.</span><cite>Meg</cite></p>
     </div>
     <p class="helper" style="margin-bottom:14px;">Willow and Scout are the two puppies visitors ask about most, because they look the least alike. Place the evidence you can observe, connect each observation to similar evidence in the parent generation, then compare.</p>
     <div id="contrastMap"></div>
     <div class="btn-row btn-row--right">
-      <button type="button" class="btn btn--primary" data-dp1-advance="3">Continue to the Litter Pattern Test →</button>
+      <button type="button" class="btn btn--primary" data-dp1-advance="3">Test the Rest of the Litter →</button>
       <span class="gate-note" data-gate-note="dp1r2"></span>
     </div>
   </div>
@@ -1174,7 +1184,7 @@ footer.lesson-footer{
     <h3 class="title-block">Does the Pattern Hold for the Rest of the Litter?</h3>
     <div class="card card--coordinator card--flat" style="margin:0 0 16px;border-left:4px solid var(--berry);">
       <p class="dialogue-quote" style="margin:0 0 6px;">Maybe Willow and Scout are unusual. What about the other puppies?</p>
-      <p class="dialogue-quote" style="margin:0;">One comparison is not enough for the display. Check whether the pattern continues across the rest of the litter.<cite>Meg</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">One comparison is not enough for the display. Check whether the pattern continues across the rest of the litter.</span><cite>Meg</cite></p>
     </div>
     <p class="helper" style="margin-bottom:14px;">Poppy, Milo, and Juniper's traits are already in the case file. For each puppy, tap the trait that also appears in the parent generation.</p>
     <div id="bridgeMatrix"></div>
@@ -1193,13 +1203,13 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-5-overview-convergence1">Continue to Convergence →</button>
+    <button type="button" class="btn btn--primary" data-next="section-5-overview-convergence1">Send Your Team's Case File →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
 
 <!-- ====== SECTION 5 — BRING THE EVIDENCE TOGETHER (Convergence 1) ====== -->
-<section class="section" id="section-5-overview-convergence1" aria-label="Complementary report and first convergence">
+<section class="section" id="section-5-overview-convergence1" aria-label="Bring the evidence together">
   <div class="alert-banner">
     <span class="alert-banner__icon" aria-hidden="true">📁</span>
     <span><span class="alert-banner__label">New Case File Received</span><br>
@@ -1253,13 +1263,13 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-6-dp2-choice">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-6-dp2-choice">Choose a Visitor Question →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
 
 <!-- ============ SECTION 6 — CHOOSE A VISITOR QUESTION ============ -->
-<section class="section" id="section-6-dp2-choice" aria-label="Decision Point 2 visitor question choice">
+<section class="section" id="section-6-dp2-choice" aria-label="Choose a visitor question">
   <div class="alert-banner">
     <span class="alert-banner__icon" aria-hidden="true">✉️</span>
     <span><span class="alert-banner__label">Two New Visitor Messages</span></span>
@@ -1300,7 +1310,7 @@ footer.lesson-footer{
 </section>
 
 <!-- ============ SECTION 7 — DP2 INVESTIGATION ============ -->
-<section class="section" id="section-7-dp2-investigation" aria-label="Decision Point 2 investigation">
+<section class="section" id="section-7-dp2-investigation" aria-label="Visitor question investigation">
   <div class="card card--flat" style="background:transparent;border:none;padding:0;box-shadow:none;">
     <p class="eyebrow eyebrow--coral" id="dp2PathLabel">Investigation</p>
     <h2 class="title-section" id="dp2PathTitle">Investigation</h2>
@@ -1316,13 +1326,13 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-8-convergence2">Continue to Convergence →</button>
+    <button type="button" class="btn btn--primary" data-next="section-8-convergence2">Send Your Visitor Finding →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
 
 <!-- ====== SECTION 8 — REPAIR THE SHELTER'S DRAFT (Convergence 2) ====== -->
-<section class="section" id="section-8-convergence2" aria-label="Convergence 2: repair the shelter explanation">
+<section class="section" id="section-8-convergence2" aria-label="Repair the shelter's draft">
   <div class="card card--flat" style="background:transparent;border:none;padding:0 0 4px;box-shadow:none;text-align:center;">
     <span class="stamp stamp--needs-revision" id="draftStamp">Needs Revision</span>
   </div>
@@ -1374,7 +1384,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-9-transfer-intro">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-9-transfer-intro">Send for Veterinary Review →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1418,7 +1428,7 @@ footer.lesson-footer{
 </section>
 
 <!-- ====== SECTION 10 — CHECK THE PATTERN BEYOND DOGS ====== -->
-<section class="section" id="section-10-transfer-cases" aria-label="Transfer cases">
+<section class="section" id="section-10-transfer-cases" aria-label="Check the pattern beyond dogs">
   <div class="card card--flat" style="background:transparent;border:none;padding:0;box-shadow:none;">
     <p class="eyebrow eyebrow--coral">Check the Pattern Beyond Dogs</p>
     <h2 class="title-section">Two Verification Files</h2>
@@ -1467,7 +1477,7 @@ footer.lesson-footer{
     <p class="eyebrow eyebrow--sage">Sign-Off Summary</p>
     <h3 class="title-block">The final review before approval</h3>
     <div class="card card--vet card--flat" style="margin:0 0 16px;border-left:4px solid var(--sage-dark);">
-      <p class="dialogue-quote" style="margin:0;">A careful explanation says what the evidence shows — and stops where the evidence stops.<cite>Shelter Veterinarian</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">A careful explanation says what the evidence shows — and stops where the evidence stops.</span><cite>Shelter Veterinarian</cite></p>
     </div>
     <div id="kslReview"></div>
   </div>
@@ -1479,7 +1489,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-12-evidence-shortlist">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-12-evidence-shortlist">Select Evidence for the Display →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1532,7 +1542,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-13-public-communication">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-13-public-communication">Prepare the Visitor Explanation →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1633,7 +1643,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-15-wall-case-close">Continue →</button>
+    <button type="button" class="btn btn--primary" data-next="section-15-wall-case-close">Return to the Visitor Question Wall →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1670,7 +1680,7 @@ footer.lesson-footer{
 
   <div class="card" id="caseCloseCard">
     <p class="eyebrow eyebrow--sage">Case Close Recommendation</p>
-    <p class="dialogue-quote" style="margin-bottom:12px;">Before the doors open, what should every staff member understand about this puppy family?<cite>Meg</cite></p>
+    <p class="dialogue-quote dialogue-quote--cited" style="margin-bottom:12px;"><span class="quote-text">Before the doors open, what should every staff member understand about this puppy family?</span><cite>Meg</cite></p>
     <div id="caseCloseFrame"></div>
   </div>
 
@@ -1732,7 +1742,7 @@ footer.lesson-footer{
 /* ---------- A1. IMAGE ASSETS (relative paths only) ---------- */
 const IMAGE_ASSETS = {
   backgrounds: {
-    shelterAdoptionEvent: 'images/shelter-adoption-event.webp.png'
+    shelterAdoptionEvent: 'images/shelter-adoption-event.webp'
   },
   characters: {
     adoptionCoordinator: 'images/adoption-coordinator.png',
@@ -1740,31 +1750,31 @@ const IMAGE_ASSETS = {
   },
   dogs: {
     case: {
-      parent1: 'images/parent-1.webp.png',
-      parent2: 'images/parent-2.webp.png',
-      willow: 'images/willow.webp.png',
-      scout: 'images/scout.webp.png',
-      poppy: 'images/poppy.webp.png',
-      milo: 'images/milo.webp.png',
-      juniper: 'images/juniper.webp.png'
+      parent1: 'images/parent-1-case.webp',
+      parent2: 'images/parent-2-case.webp',
+      willow: 'images/willow-case.webp',
+      scout: 'images/scout-case.webp',
+      poppy: 'images/poppy-case.webp',
+      milo: 'images/milo-case.webp',
+      juniper: 'images/juniper-case.webp'
     },
     display: {
-      parent1: 'images/parent-1.webp.png',
-      parent2: 'images/parent-2.webp.png',
-      willow: 'images/willow.webp.png',
-      scout: 'images/scout.webp.png',
-      poppy: 'images/poppy.webp.png',
-      milo: 'images/milo.webp.png',
-      juniper: 'images/juniper.webp.png'
+      parent1: 'images/parent-1-display.webp',
+      parent2: 'images/parent-2-display.webp',
+      willow: 'images/willow-display.webp',
+      scout: 'images/scout-display.webp',
+      poppy: 'images/poppy-display.webp',
+      milo: 'images/milo-display.webp',
+      juniper: 'images/juniper-display.webp'
     },
     group: {
-      familyReveal: 'images/puppy-family-reveal.webp.png',
+      familyReveal: 'images/puppy-family-reveal.webp',
       familyDisplay: 'images/puppy-family-display.webp.png'
     }
   },
   transfer: {
-    plantFamily: 'images/plant-family-grid.webp.png',
-    humanFamily: 'images/human-family-lineup.webp.png'
+    plantFamily: 'images/plant-family-grid.webp',
+    humanFamily: 'images/human-family-lineup.webp'
   }
 };
 
@@ -4901,7 +4911,7 @@ function renderBoardOutput(){
   out.innerHTML = '<div class="card card--flat" style="background:transparent;border:none;padding:0;box-shadow:none;text-align:center;">' +
       '<span class="stamp stamp--approved">Display Proof Ready</span></div>' +
     '<div class="card card--coordinator card--flat" style="border-left:4px solid var(--berry);">' +
-      '<p class="dialogue-quote" style="margin:0;">Review it carefully. This is what visitors will see.<cite>Meg</cite></p></div>' +
+      '<p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">Review it carefully. This is what visitors will see.</span><cite>Meg</cite></p></div>' +
     '<div class="card"><p class="eyebrow eyebrow--sage">Generated Display</p>' +
     '<h3 class="title-block">Your Shelter Display</h3>' +
     renderBoardHtml(state.display.boardData, null) +
@@ -5701,7 +5711,7 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-chain-dog'))){ toggleChainObs(n.dataset.chainDog, n.dataset.chainLabel); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-chainlink-key'))){ toggleChainLink(n.dataset.chainlinkKey, n.dataset.chainlinkParent); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-chain-diff'))){ toggleChainDiff(n.dataset.chainDiff); mountDeclaredAssets(); return; }
-  if ((n = d(t, 'data-web-puppy'))){ chooseWebPuppy(n.dataset.webp.pnguppy); mountDeclaredAssets(); return; }
+  if ((n = d(t, 'data-web-puppy'))){ chooseWebPuppy(n.dataset.webPuppy); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-web-cat'))){ toggleWebObs(n.dataset.webCat, n.dataset.webLabel); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-weblink-cat'))){ toggleWebLink(n.dataset.weblinkCat, n.dataset.weblinkParent); mountDeclaredAssets(); return; }
   if ((n = d(t, 'data-web-cmp'))){ setWebCompare(n.dataset.webCmp, n.dataset.webCmpVal); mountDeclaredAssets(); return; }
