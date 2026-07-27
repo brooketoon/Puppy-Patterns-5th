@@ -919,11 +919,14 @@ footer.lesson-footer{
 
 <!-- ===================== SECTION 0 — LAUNCH ===================== -->
 <section class="section active" id="section-0-launch" aria-label="Case launch">
-  <div class="card card--hero">
+  <div class="card card--hero" data-tts>
+    <button type="button" class="tts-btn" data-tts-btn>🔊 Listen</button>
     <h1 class="title-main">Puppy Patterns</h1>
     <p class="title-sub">The Shelter Genetics Case</p>
-    <p class="hero-lead">The shelter is preparing for its biggest adoption event of the season. But one puppy family is already drawing questions.</p>
-    <p class="hero-lead">Meg, the adoption coordinator, has opened a new case file — and your name is on it.</p>
+    <p class="hero-lead">Down the kennel row at Cedar Creek Animal Shelter, the barking starts early and doesn't really stop. It smells like kibble and fresh straw. Volunteers carry crates past a hand-lettered banner going up over the front desk: this weekend is the shelter's biggest adoption event of the year.</p>
+    <p class="hero-lead">One family is already the talk of the place — two parent dogs and their five puppies, all up for adoption together. Visitors keep stopping at the pen with questions the staff can't quite answer yet. <em>Did living at the shelter make Willow's fur wavy? How can two of these puppies look so different and still be sisters?</em></p>
+    <p class="hero-lead">That's where you come in. You're volunteering this weekend as a Junior Genetics Investigator, and this family's questions need real, evidence-based answers before adoption day — or the staff will just keep guessing.</p>
+    <p class="hero-lead">Across the room, Meg is waving you over. What do you think she's about to show you?</p>
     <div class="btn-row btn-row--center" style="margin-top:30px;">
       <button type="button" class="btn btn--launch" id="btnOpenCase">Enter the Shelter →</button>
     </div>
@@ -1093,9 +1096,9 @@ footer.lesson-footer{
     <h2 class="title-section">A Mixed Clipboard</h2>
     <p class="subtle-prompt" style="margin-bottom:14px;">The veterinarian places four intake notes on the table.</p>
     <div class="speaker-row">
-      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="The shelter veterinarian"></div>
+      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="Dr. Will, the shelter veterinarian"></div>
       <div class="speaker-row__body">
-        <p class="speaker-name">Shelter Veterinarian</p>
+        <p class="speaker-name">Dr. Will</p>
         <p class="dialogue-quote">These notes are all true observations.</p>
         <p class="dialogue-quote">But true does not always mean useful for this case.</p>
         <p class="dialogue-quote">Which ones could help us compare one generation with the next?</p>
@@ -1160,7 +1163,7 @@ footer.lesson-footer{
     <p class="eyebrow">Round 1</p>
     <h3 class="title-block">Build the Parent Reference Cards</h3>
     <div class="card card--vet card--flat" style="margin:0 0 16px;border-left:4px solid var(--sage-dark);">
-      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">If we are going to say a puppy shares a family trait, we need a record of what appears in the parents first. Build the reference cards from what you can actually observe.</span><cite>Shelter Veterinarian</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">If we are going to say a puppy shares a family trait, we need a record of what appears in the parents first. Build the reference cards from what you can actually observe.</span><cite>Dr. Will</cite></p>
     </div>
     <p class="helper" style="margin-bottom:14px;">Study the same kind of evidence on both parent dogs, then build a reference card for each one. You choose the labels — the shelter does not hand you a finished card.</p>
     <div id="parentViewer"></div>
@@ -1262,8 +1265,8 @@ footer.lesson-footer{
 
   <div class="card">
     <p class="eyebrow eyebrow--gold">Puppy Family Pattern Board</p>
-    <h3 class="title-block">Build the shelter's evidence board</h3>
-    <p class="helper" style="margin-bottom:14px;">Move at least one observation from the evidence tray onto each section of the board. Evidence from both investigations is available, plus the shelter records.</p>
+    <h3 class="title-block">The shelter's evidence board</h3>
+    <p class="helper" style="margin-bottom:14px;">Both teams' observations are organized here by what they show. Look across every category before you answer below.</p>
     <div id="patternBoard"></div>
   </div>
 
@@ -1278,7 +1281,7 @@ footer.lesson-footer{
 
   <div class="btn-row btn-row--split">
     <button type="button" class="btn btn--back" data-back>← Back</button>
-    <button type="button" class="btn btn--primary" data-next="section-6-dp2-choice">Choose a Visitor Question →</button>
+    <button type="button" class="btn btn--primary" data-next="section-6-dp2-choice" data-nogate>Choose a Visitor Question →</button>
     <span class="gate-note" data-gate-note></span>
   </div>
 </section>
@@ -1417,9 +1420,9 @@ footer.lesson-footer{
     <p class="eyebrow eyebrow--sage">The Veterinarian's Desk</p>
     <h2 class="title-section">One More Check Before We Publish</h2>
     <div class="speaker-row">
-      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="The shelter veterinarian"></div>
+      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="Dr. Will, the shelter veterinarian"></div>
       <div class="speaker-row__body">
-        <p class="speaker-name">Shelter Veterinarian</p>
+        <p class="speaker-name">Dr. Will</p>
         <p class="dialogue-quote">Your explanation fits this puppy family.</p>
         <p class="dialogue-quote">Before my name goes on a public science display, I need to know whether this is a broader parent–offspring pattern — or something that only appears in this litter.</p>
         <p class="dialogue-quote">Check two additional family files.</p>
@@ -1468,9 +1471,9 @@ footer.lesson-footer{
     <p class="eyebrow eyebrow--sage">Veterinary Sign-Off Checklist</p>
     <h2 class="title-section">Attach Your Evidence</h2>
     <div class="speaker-row">
-      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="The shelter veterinarian"></div>
+      <div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="Dr. Will, the shelter veterinarian"></div>
       <div class="speaker-row__body">
-        <p class="speaker-name">Shelter Veterinarian</p>
+        <p class="speaker-name">Dr. Will</p>
         <p class="dialogue-quote">I now have three evidence sets: puppies, plants, and a fictional human family.</p>
         <p class="dialogue-quote">I will not approve the display based on a checked box alone. For every statement you support, attach the evidence that earns that answer.</p>
       </div>
@@ -1492,7 +1495,7 @@ footer.lesson-footer{
     <p class="eyebrow eyebrow--sage">Sign-Off Summary</p>
     <h3 class="title-block">The final review before approval</h3>
     <div class="card card--vet card--flat" style="margin:0 0 16px;border-left:4px solid var(--sage-dark);">
-      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">A careful explanation says what the evidence shows — and stops where the evidence stops.</span><cite>Shelter Veterinarian</cite></p>
+      <p class="dialogue-quote dialogue-quote--cited" style="margin:0;"><span class="quote-text">A careful explanation says what the evidence shows — and stops where the evidence stops.</span><cite>Dr. Will</cite></p>
     </div>
     <div id="kslReview"></div>
   </div>
@@ -2537,9 +2540,6 @@ const GATES = {
     return '';
   },
   'section-5-overview-convergence1': function(){
-    const m = boardMinimums();
-    if (!m.ok) return m.msg;
-    if (!state.convergence1.reviewed) return 'Review your evidence board to reveal the next step.';
     return '';
   },
   'section-6-dp2-choice': function(){
@@ -3129,7 +3129,7 @@ function renderVetFollowup(){
   mount.innerHTML = '<div class="card card--vet" data-tts>' +
     '<button type="button" class="tts-btn" data-tts-btn>🔊 Listen</button>' +
     '<div class="speaker-row"><div class="asset asset--char" data-asset="characters.shelterVeterinarian" data-alt="The shelter veterinarian"></div>' +
-    '<div class="speaker-row__body"><p class="speaker-name">Shelter Veterinarian</p>' +
+    '<div class="speaker-row__body"><p class="speaker-name">Dr. Will</p>' +
     '<p class="dialogue-quote">You separated physical family evidence from things the shelter added or the puppy learned.</p>' +
     '<p class="dialogue-quote">Physical traits can help us look for patterns between parents and offspring. Scientists describe traits passed through families as <strong>inherited traits</strong>.</p>' +
     '<p class="dialogue-quote">Those traits are influenced by <strong>genetic information</strong> passed from one <strong>generation</strong> to the next. Now we need evidence showing what that looks like in this family.</p>' +
@@ -3648,75 +3648,40 @@ let EVIDENCE_CACHE = null;
 function allEvidence(){ if (!EVIDENCE_CACHE) EVIDENCE_CACHE = evidenceItems(); return EVIDENCE_CACHE; }
 function evidenceById(id){ return allEvidence().filter(function(e){ return e.id === id; })[0] || null; }
 
-function boardMinimums(){
-  const p = state.convergence1.placements;
-  const placed = Object.keys(p);
-  const inZone = function(z){ return placed.filter(function(id){ return p[id] === z; }); };
-  for (let i = 0; i < 3; i++){
-    const z = BOARD_ZONES[i];
-    if (inZone(z.id).length < 1) return { ok:false, msg:'Complete one item in each Pattern Board section — “' + z.title + '” is still empty.' };
+/* Convergence rule: the investigation presents the evidence automatically,
+   organized so relationships are visible — students do not choose which
+   evidence reaches the board. Category assignment comes directly from each
+   item's known .kind, not from a student sort. */
+function autoAssembleBoard(){
+  allEvidence().forEach(function(e){
+    state.convergence1.placements[e.id] = e.kind === 'similar' ? 'similar' :
+      e.kind === 'differ' ? 'differ' : e.kind === 'combo' ? 'combo' : 'notuseful';
+  });
+  if (!state.convergence1.reviewed){
+    state.convergence1.reviewed = true;
+    state.convergence1.completedBoard = JSON.parse(JSON.stringify(state.convergence1.placements));
+    logEvent('board-assembled', { count:Object.keys(state.convergence1.placements).length });
+    toast('FAMILY EVIDENCE ORGANIZED');
   }
-  if (inZone('notuseful').length < 1) return { ok:false, msg:'Place at least one observation in “Not Useful for This Question.”' };
-  return { ok:true, msg:'' };
 }
 function renderPatternBoard(){
   const mount = el('patternBoard');
   if (!mount) return;
-  mount.innerHTML = '<div id="boardSorterMount"></div><div id="boardReview" style="margin-top:14px;"></div>';
-  registerSorter({
-    id:'board', mount:'boardSorterMount', trayTitle:'Evidence Tray — both investigations plus shelter records',
-    items: allEvidence().map(function(e){ return { id:e.id, text:e.text, meta:e.meta }; }),
-    zones: BOARD_ZONES,
-    get: function(){ return state.convergence1.placements; },
-    set: function(id, z){
-      const prev = state.convergence1.placements[id] || null;
-      if (z) state.convergence1.placements[id] = z; else delete state.convergence1.placements[id];
-      state.convergence1.placementHistory.push({ item:id, from:prev, to:z, at:new Date().toISOString() });
-      if (prev && z && prev !== z) state.convergence1.revisions.push({ item:id, from:prev, to:z, at:new Date().toISOString() });
-    },
-    onChange: renderBoardReview
-  });
-  renderBoardReview();
-}
-function renderBoardReview(){
-  const r = el('boardReview');
-  if (!r) return;
-  const m = boardMinimums();
-  if (!m.ok){
-    r.innerHTML = '<div class="feedback feedback--rethink"><span class="feedback__icon">↻</span><span>' + esc(m.msg) + '</span></div>';
-    return;
-  }
-  r.innerHTML = '<div class="feedback feedback--yes"><span class="feedback__icon">✓</span><span>Your board meets the shelter\u2019s minimum requirements. Review it before you continue.</span></div>' +
-    '<div class="btn-row btn-row--right"><button type="button" class="btn btn--primary btn--small" id="btnBoardReview">Review Evidence Board</button></div>' +
-    (state.convergence1.reviewed ? boardFlagsHtml() : '');
-}
-function boardFlagsHtml(){
+  autoAssembleBoard();
   const p = state.convergence1.placements;
-  const flags = [];
-  Object.keys(p).forEach(function(id){
-    const e = evidenceById(id);
-    if (!e) return;
-    if (e.kind === 'notuseful' && p[id] !== 'notuseful'){
-      flags.push('“' + e.text + '” is a real observation, but it is temporary, learned, or added at the shelter. Reconsider whether it gives evidence about inherited traits.');
-    }
-    if (e.kind === 'similar' && p[id] === 'notuseful'){
-      flags.push('“' + e.text + '” describes a physical trait that appears in the family evidence. Reconsider whether it belongs in the Not Useful section.');
-    }
-  });
-  state.convergence1.flaggedItems = flags.slice();
-  const body = flags.length
-    ? '<div class="feedback feedback--rethink"><span class="feedback__icon">↻</span><span><strong>Items to reconsider:</strong><br>' +
-      flags.map(function(f){ return '• ' + esc(f); }).join('<br>') +
-      '<br><em>Nothing has been moved for you — change anything you want to change.</em></span></div>'
-    : '<div class="feedback feedback--yes"><span class="feedback__icon">✓</span><span>Nothing on your board contradicts the evidence.</span></div>';
-  return '<div style="margin-top:12px;">' + body + '</div>';
-}
-function reviewBoard(){
-  state.convergence1.reviewed = true;
-  state.convergence1.completedBoard = JSON.parse(JSON.stringify(state.convergence1.placements));
-  logEvent('board-reviewed', { count:Object.keys(state.convergence1.placements).length });
-  renderBoardReview(); saveState(); updateGates();
-  toast('FAMILY EVIDENCE ORGANIZED');
+  mount.innerHTML = '<div class="zone-grid">' + BOARD_ZONES.map(function(z){
+    const items = allEvidence().filter(function(e){ return p[e.id] === z.id; });
+    return '<div class="zone is-met"><div class="zone__head"><span class="zone__title">' + esc(z.title) + '</span>' +
+      '<span class="zone__count">' + items.length + '</span></div>' +
+      (z.hint ? '<p class="zone__hint">' + esc(z.hint) + '</p>' : '') +
+      '<div class="zone__items">' +
+      (items.length ? items.map(function(e){
+        return '<div class="tile is-placed"><span class="tile__text">' + esc(e.text) +
+          (e.meta ? '<br><span class="tag">' + esc(e.meta) + '</span>' : '') + '</span></div>';
+      }).join('') : '<p class="zone__empty">Nothing in this category.</p>') +
+      '</div></div>';
+  }).join('') + '</div>';
+  saveState(); updateGates();
 }
 </script>
 
@@ -5220,17 +5185,8 @@ function exConvergence1(){
     const e = evidenceById(id);
     return [e ? e.text : id, e ? e.meta : '—', zoneTitle(BOARD_ZONES, p[id])];
   });
-  const revisions = state.convergence1.revisions.map(function(r){
-    const e = evidenceById(r.item);
-    return [e ? e.text : r.item, zoneTitle(BOARD_ZONES, r.from), zoneTitle(BOARD_ZONES, r.to), formatStamp(r.at)];
-  });
-  const unused = allEvidence().filter(function(e){ return !p[e.id]; }).map(function(e){ return [e.text, e.meta]; });
   return exBlock('5 · Bring the Evidence Together — Puppy Family Pattern Board',
-    (rows.length ? exTable(['Observation','Source','Board section'], rows) : '<p class="ex-empty">Nothing was placed on the board.</p>') +
-    (revisions.length ? '<h3>Items the student moved</h3>' + exTable(['Observation','From','To','Time'], revisions) : '') +
-    (state.convergence1.flaggedItems.length ? '<h3>Items flagged during review</h3><ul>' +
-      state.convergence1.flaggedItems.map(function(f){ return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>' : '') +
-    (unused.length ? '<h3>Evidence left in the tray</h3>' + exTable(['Observation','Source'], unused) : '') +
+    (rows.length ? exTable(['Observation','Source','Board section'], rows) : '<p class="ex-empty">The evidence board has not been assembled yet.</p>') +
     exField('What the combined evidence shows', state.convergence1.journalResponse));
 }
 function exDp2(){
@@ -5702,7 +5658,6 @@ document.addEventListener('click', function(e){
   if ((n = d(t, 'data-mx-dog'))){ confirmMatrixTrait(n.dataset.mxDog, n.dataset.mxConfirm); mountDeclaredAssets(); return; }
 
   /* Section 5 */
-  if (t.closest('#btnBoardReview')){ reviewBoard(); return; }
 
   /* Sections 6–7 */
   if ((n = d(t, 'data-dp2'))){ chooseDp2(n.dataset.dp2); return; }
