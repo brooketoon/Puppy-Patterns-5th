@@ -870,6 +870,85 @@ footer.lesson-footer{
 .feat-roster-item img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top center;box-shadow:0 1px 4px rgba(0,0,0,.15);}
 .feat-roster-item__name{font-size:.68rem;font-weight:800;color:var(--berry-dark);}
 .feat-roster-item__traits{font-size:.6rem;color:var(--gray-600);text-align:center;line-height:1.2;}
+/* ---------- CORKBOARD VISITOR QUESTION WALL (Section 2) ---------- */
+.corkwall-board{
+  position:relative;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  overflow:hidden;
+  padding:5% 6% 4%;
+  background-image:url('images/corkboard.png');
+  background-size:100% 100%;
+  background-position:center;
+  background-color:#c98f4e;
+}
+.corkwall-tray-label{
+  font-family:var(--font);font-weight:800;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;
+  color:#5c3a1e;text-shadow:0 1px 0 rgba(255,255,255,.35);margin:0 0 8px 4px;
+}
+.corkwall-tray{
+  display:flex;flex-wrap:wrap;align-content:flex-start;gap:10px;min-height:70px;
+  padding:6px 4px 14px;margin-bottom:10px;
+}
+.corkwall-zones{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.corkwall-zone{position:relative;border-radius:10px;padding:34px 8px 10px;min-height:150px;}
+.corkwall-zone__notes{display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px;min-height:50px;}
+.corkwall-zone__empty{font-size:.72rem;color:#5c3a1e;opacity:.65;font-style:italic;margin:6px 4px;}
+.corkwall-zone-card{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(var(--tilt,-1.5deg));
+  width:88%;max-width:220px;background:#FFFDF6;border:1px solid #E7DFC8;border-radius:4px;
+  box-shadow:0 3px 8px rgba(0,0,0,.22);padding:7px 9px 6px;text-align:center;
+  font-size:.68rem;font-weight:800;line-height:1.25;color:var(--berry-dark);
+}
+.corkwall-note{
+  position:relative;width:140px;min-height:80px;padding:14px 9px 7px;font-size:.74rem;font-weight:700;
+  line-height:1.28;color:#3a3324;border-radius:2px;cursor:pointer;user-select:none;
+  transform:rotate(var(--tilt,0deg));box-shadow:0 3px 7px rgba(0,0,0,.22);
+  transition:box-shadow .15s ease, transform .12s ease;background:#FFEA8A;
+}
+.corkwall-note--pink{background:#FFC8DD;}
+.corkwall-note--blue{background:#B8E1FF;}
+.corkwall-note--green{background:#C6F0C2;}
+.corkwall-note--orange{background:#FFD3A6;}
+.corkwall-note__pin{
+  position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, #999 75%);box-shadow:0 2px 3px rgba(0,0,0,.45);
+}
+.corkwall-note.is-armed{
+  box-shadow:0 12px 20px rgba(0,0,0,.35);transform:rotate(0deg) scale(1.06);
+  outline:2px solid rgba(255,255,255,.85);outline-offset:2px;z-index:5;
+}
+.corkwall-note:focus-visible{outline:3px solid var(--berry);outline-offset:2px;}
+/* ---------- CLIPBOARD/FOLDER EVIDENCE CHECK (Section 3) ---------- */
+.evcheck-wrap{max-width:340px;margin:0 auto;}
+.evcheck-clipboard{
+  position:relative;width:100%;aspect-ratio:1145/1536;
+  background-image:url('images/clipboard.png');background-size:100% 100%;background-position:center;
+  background-color:#e8ddc9;margin-bottom:8px;
+}
+.evcheck-note-slot{position:absolute;top:19%;left:12%;right:12%;min-height:26%;display:flex;align-items:center;justify-content:center;padding:6px;}
+.evcheck-note{
+  width:100%;background:#FFFDF6;border:1px solid #EAE1CB;border-radius:3px;box-shadow:0 3px 8px rgba(0,0,0,.18);
+  padding:14px 12px;text-align:center;font-size:.9rem;font-weight:700;color:var(--ink);cursor:pointer;
+  transition:box-shadow .15s ease, transform .12s ease;
+}
+.evcheck-note__tag{display:block;font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600);margin-bottom:5px;}
+.evcheck-note--placed{width:100%;padding:9px 8px;font-size:.72rem;background:#FFFDF6;border:1px solid #EAE1CB;border-radius:3px;box-shadow:0 3px 8px rgba(0,0,0,.2);}
+.evcheck-folders{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+.evcheck-folder{
+  position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1145/1141;background-size:cover;background-position:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);cursor:pointer;transition:box-shadow .15s ease;
+}
+.evcheck-folder--trait{background-image:url('images/folder-1.png');}
+.evcheck-folder--other{background-image:url('images/folder-2.png');}
+.evcheck-folder.is-selected{box-shadow:0 0 0 3px var(--sage-dark), 0 4px 10px rgba(0,0,0,.12);}
+.evcheck-folder__placed{position:absolute;top:18%;left:9%;right:9%;}
+.evcheck-folder__label{position:absolute;left:8%;right:8%;bottom:8%;text-align:center;font-size:.72rem;font-weight:800;
+  color:var(--berry-dark);text-shadow:0 1px 2px rgba(255,255,255,.75), 0 0 6px rgba(255,255,255,.55);}
+.evcheck-dots{display:flex;gap:6px;justify-content:center;margin:14px 0 4px;}
+.evcheck-dot{width:9px;height:9px;border-radius:50%;background:var(--gray-300);}
+.evcheck-dot.is-current{background:var(--berry);transform:scale(1.25);}
+.evcheck-dot.is-answered{background:var(--sage-dark);}
 </style>
 </head>
 <body>
@@ -1828,7 +1907,11 @@ footer.lesson-footer{
 /* ---------- A1. IMAGE ASSETS (relative paths only) ---------- */
 const IMAGE_ASSETS = {
   backgrounds: {
-    shelterAdoptionEvent: 'images/shelter-adoption-event.webp'
+    shelterAdoptionEvent: 'images/shelter-adoption-event.webp',
+    corkboard: 'images/corkboard.png',
+    clipboard: 'images/clipboard.png',
+    folder1: 'images/folder-1.png',
+    folder2: 'images/folder-2.png'
   },
   characters: {
     adoptionCoordinator: 'images/adoption-coordinator.png',
@@ -2625,6 +2708,7 @@ const GATES = {
       if (!mixerAllBuilt()) return 'Build your full guess to reveal the puppy.';
       if (!mixerState().revealed) return 'Reveal the real puppy to reveal your answer box.';
     }
+    if (!String(state.dp2.pathExplanation).trim()) return 'Write your inheritance explanation before continuing.';
     return '';
   },
   'section-8-convergence2': function(){
@@ -3092,33 +3176,80 @@ function togglePin(dogKey, labelId){
 }
 
 /* ---------- C3. SECTION 2 — VISITOR QUESTION WALL (initial) ---------- */
+const WALL_NOTE_COLORS = ['', '--pink', '--blue', '--green', '--orange'];
+const WALL_NOTE_TILTS = {};
+VISITOR_QUESTIONS.forEach(function(q, i){ WALL_NOTE_TILTS[q.id] = ((i % 2 === 0) ? -1 : 1) * (1 + (i % 3)); });
+let wallArmedNote = null;
+
+function labelForQuestion(qid){
+  const q = VISITOR_QUESTIONS.filter(function(x){ return x.id === qid; })[0];
+  return q ? q.text : '';
+}
+function corkwallNoteHtml(q){
+  const idx = VISITOR_QUESTIONS.indexOf(q);
+  const colorCls = WALL_NOTE_COLORS[idx % WALL_NOTE_COLORS.length];
+  const armed = wallArmedNote === q.id;
+  return '<div class="corkwall-note' + colorCls + (armed ? ' is-armed' : '') + '" style="--tilt:' + (WALL_NOTE_TILTS[q.id] || 0) + 'deg;" ' +
+    'data-corkwall-note="' + q.id + '" tabindex="0" role="button" aria-pressed="' + armed + '">' +
+    '<span class="corkwall-note__pin"></span>' + esc(q.text) + '</div>';
+}
+function onCorkwallNoteTap(qid){
+  wallArmedNote = (wallArmedNote === qid) ? null : qid;
+  renderWallInitial();
+}
+function onCorkwallZoneTap(zoneId){
+  if (!wallArmedNote) return;
+  const prev = state.visitorWall.initialPlacements[wallArmedNote] || null;
+  if (zoneId === 'tray'){ delete state.visitorWall.initialPlacements[wallArmedNote]; }
+  else { state.visitorWall.initialPlacements[wallArmedNote] = zoneId; }
+  state.visitorWall.changes.push({ phase:'initial', q:wallArmedNote, from:prev, to:(zoneId === 'tray' ? null : zoneId), at:new Date().toISOString() });
+  logEvent('wall-place', { q:wallArmedNote, zone:zoneId });
+  wallArmedNote = null;
+  renderWallInitial(); saveState(); updateGates();
+}
+
 function renderWallInitial(){
   const mount = el('wallInitial');
   if (!mount) return;
   const locked = !!state.visitorWall.initialSubmittedAt;
 
   if (!locked){
-    mount.innerHTML = '<div id="wallSorterMount"></div>' +
-      '<div class="btn-row btn-row--right"><button type="button" class="btn btn--primary btn--small" id="btnWallSubmit">Submit My Evidence Forecast</button>' +
+    const placements = state.visitorWall.initialPlacements;
+    const unplaced = VISITOR_QUESTIONS.filter(function(q){ return !placements[q.id]; });
+
+    let html = '<div class="corkwall-board">' +
+      '<p class="corkwall-tray-label">Unsorted Questions</p>' +
+      '<div class="corkwall-tray">' +
+        (unplaced.length ? unplaced.map(corkwallNoteHtml).join('') : '<p class="corkwall-zone__empty">All questions are placed.</p>') +
+      '</div>' +
+      '<div class="corkwall-zones">' + WALL_ZONES.map(function(z, zi){
+        const items = VISITOR_QUESTIONS.filter(function(q){ return placements[q.id] === z.id; });
+        const tilt = (zi % 2 === 0 ? -2 : 1.5);
+        return '<div class="corkwall-zone">' +
+          '<div class="corkwall-zone-card" style="--tilt:' + tilt + 'deg;">' + esc(z.title) + '</div>' +
+          '<div class="corkwall-zone__notes">' +
+          (items.length ? items.map(corkwallNoteHtml).join('') : '<p class="corkwall-zone__empty">Nothing pinned here yet.</p>') +
+          '</div></div>';
+      }).join('') + '</div>' +
+    '</div>';
+
+    html += '<div id="wallPickedBanner">';
+    if (wallArmedNote){
+      html += '<p class="helper" style="margin:10px 2px 6px;font-weight:700;color:var(--berry-dark);">Picked: \u201c' + esc(labelForQuestion(wallArmedNote)) + '\u201d \u2014 pin it to an area:</p>' +
+        '<div class="chip-set" style="margin:0 0 4px;">' +
+          WALL_ZONES.map(function(z){
+            return '<button type="button" class="chip" data-corkwall-place="' + z.id + '">' + esc(z.title) + '</button>';
+          }).join('') +
+          '<button type="button" class="chip" data-corkwall-place="tray">\u21a9 Return to tray</button>' +
+        '</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="btn-row btn-row--right"><button type="button" class="btn btn--primary btn--small" id="btnWallSubmit">Submit My Evidence Forecast</button>' +
       '<span class="gate-note" id="wallSubmitNote"></span></div>';
-    registerSorter({
-      id:'wall', mount:'wallSorterMount', trayTitle:'Visitor Questions',
-      items: VISITOR_QUESTIONS.map(function(q){ return { id:q.id, text:q.text }; }),
-      zones: WALL_ZONES,
-      get: function(){ return state.visitorWall.initialPlacements; },
-      set: function(id, zone){
-        const prev = state.visitorWall.initialPlacements[id] || null;
-        if (zone) state.visitorWall.initialPlacements[id] = zone;
-        else delete state.visitorWall.initialPlacements[id];
-        state.visitorWall.changes.push({ phase:'initial', q:id, from:prev, to:zone, at:new Date().toISOString() });
-      },
-      onChange: function(){
-        const n = el('wallSubmitNote');
-        const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
-        if (n) n.textContent = left ? left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.' : '';
-      }
-    });
-    const left = VISITOR_QUESTIONS.length - Object.keys(state.visitorWall.initialPlacements).length;
+
+    mount.innerHTML = html;
+    const left = VISITOR_QUESTIONS.length - Object.keys(placements).length;
     const n = el('wallSubmitNote'); if (n && left) n.textContent = left + ' question' + (left > 1 ? 's' : '') + ' still on the tray.';
   } else {
     mount.innerHTML =
@@ -3159,25 +3290,46 @@ function submitWall(){
 }
 
 /* ---------- C4. SECTION 3 — EVIDENCE CHECK + DP1 ---------- */
+let evidenceCheckIndex = 0;
 function renderEvidenceCheck(){
   const mount = el('evidenceCheck');
   if (!mount) return;
-  mount.innerHTML = EVIDENCE_CHECK.map(function(it){
-    const chosen = state.evidenceCheck.responses[it.id];
-    const right = chosen === it.answer;
-    let fb = '';
-    if (chosen){
-      fb = '<div class="feedback feedback--' + (right ? 'yes' : 'rethink') + '">' +
-           '<span class="feedback__icon">' + (right ? '✓' : '↻') + '</span><span>' + esc(right ? it.yes : it.no) + '</span></div>';
-    }
-    return '<div class="intake-card" style="margin-bottom:12px;">' +
-      '<span class="intake-card__tag">Intake Note</span>' +
-      '<p style="font-weight:800;color:var(--berry-dark);margin:2px 0 10px;">' + esc(it.text) + '</p>' +
-      '<div class="chip-set" role="group" aria-label="' + esc(it.text) + '">' +
-        '<button type="button" class="chip' + (chosen === 'trait' ? ' is-selected' : '') + '" data-ec="' + it.id + '" data-ec-val="trait" aria-pressed="' + (chosen === 'trait') + '">Could help compare the generations</button>' +
-        '<button type="button" class="chip' + (chosen === 'other' ? ' is-selected' : '') + '" data-ec="' + it.id + '" data-ec-val="other" aria-pressed="' + (chosen === 'other') + '">Something else</button>' +
-      '</div>' + fb + '</div>';
-  }).join('');
+  const idx = evidenceCheckIndex;
+  const it = EVIDENCE_CHECK[idx];
+  const chosen = state.evidenceCheck.responses[it.id];
+  const right = chosen === it.answer;
+
+  let html = '<div class="evcheck-wrap">' +
+    '<p class="helper" style="text-align:center;font-weight:700;color:var(--berry-dark);margin-bottom:8px;">Note ' + (idx + 1) + ' of ' + EVIDENCE_CHECK.length + '</p>' +
+    '<div class="evcheck-clipboard"><div class="evcheck-note-slot">' +
+      (!chosen ? '<div class="evcheck-note"><span class="evcheck-note__tag">Intake Note</span>' + esc(it.text) + '</div>' : '') +
+    '</div></div>' +
+    '<p class="helper" style="text-align:center;margin:8px 0;">' + (chosen ? 'Tap the other folder to change your answer.' : 'Tap the folder this note belongs in.') + '</p>' +
+    '<div class="evcheck-folders">' +
+      '<div class="evcheck-folder evcheck-folder--trait' + (chosen === 'trait' ? ' is-selected' : '') + '" data-ec="' + it.id + '" data-ec-val="trait">' +
+        (chosen === 'trait' ? '<div class="evcheck-folder__placed"><div class="evcheck-note--placed">' + esc(it.text) + '</div></div>' : '') +
+        '<span class="evcheck-folder__label">Could help compare the generations</span></div>' +
+      '<div class="evcheck-folder evcheck-folder--other' + (chosen === 'other' ? ' is-selected' : '') + '" data-ec="' + it.id + '" data-ec-val="other">' +
+        (chosen === 'other' ? '<div class="evcheck-folder__placed"><div class="evcheck-note--placed">' + esc(it.text) + '</div></div>' : '') +
+        '<span class="evcheck-folder__label">Something else</span></div>' +
+    '</div>' +
+    (chosen ? '<div class="feedback feedback--' + (right ? 'yes' : 'rethink') + '" style="margin-top:12px;"><span class="feedback__icon">' +
+      (right ? '✓' : '↻') + '</span><span>' + esc(right ? it.yes : it.no) + '</span></div>' : '') +
+    '<div class="evcheck-dots">' + EVIDENCE_CHECK.map(function(x, i){
+      const cls = i === idx ? 'is-current' : (state.evidenceCheck.responses[x.id] ? 'is-answered' : '');
+      return '<span class="evcheck-dot ' + cls + '"></span>';
+    }).join('') + '</div>' +
+    '<div class="btn-row" style="justify-content:space-between;margin-top:10px;">' +
+      '<button type="button" class="btn btn--back" data-ec-nav="prev"' + (idx === 0 ? ' disabled' : '') + '>\u2190 Previous</button>' +
+      '<button type="button" class="btn btn--primary" data-ec-nav="next"' + (idx === EVIDENCE_CHECK.length - 1 ? ' disabled' : '') + '>Next note \u2192</button>' +
+    '</div>' +
+  '</div>';
+  mount.innerHTML = html;
+}
+function navEvidenceCheck(dir){
+  if (dir === 'prev' && evidenceCheckIndex > 0) evidenceCheckIndex--;
+  else if (dir === 'next' && evidenceCheckIndex < EVIDENCE_CHECK.length - 1) evidenceCheckIndex++;
+  renderEvidenceCheck();
 }
 function answerEvidenceCheck(id, val){
   state.evidenceCheck.responses[id] = val;
@@ -4097,8 +4249,20 @@ function renderDp2Workspace(){
 }
 
 const DP2_CATS = ['coatColor', 'fur', 'ears'];
+/* Returns a stable semantic key for a dog's value in a trait category.
+   coatColor strings are written identically across parent/offspring entries,
+   so raw value works there. fur/ears descriptive strings are NOT identical
+   ("medium-length and wavy" vs "wavy") even when they mean the same thing —
+   this reuses the same TRAIT_LABELS semantic test functions the rest of the
+   app already relies on, instead of comparing raw strings directly. */
+function catSemanticKey(dk, cat){
+  if (cat === 'coatColor') return DOG_DATA[dk].coatColor;
+  const match = labelsForCategory(cat).filter(function(l){ return l.test(DOG_DATA[dk]); })[0];
+  return match ? match.id : DOG_DATA[dk][cat];
+}
 function dp2CorrectParent(dk, cat){
-  return PARENT_KEYS.filter(function(pk){ return DOG_DATA[pk][cat] === DOG_DATA[dk][cat]; })[0];
+  const key = catSemanticKey(dk, cat);
+  return PARENT_KEYS.filter(function(pk){ return catSemanticKey(pk, cat) === key; })[0];
 }
 
 /* --- Path A: Sibling recipe-tag + strand compare --- */
@@ -4209,14 +4373,14 @@ function traitWebHtml(){
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">' +
       '<div><p class="helper" style="font-weight:700;">Your guess</p>' +
       DP2_CATS.map(function(cat){
-        const b = m.built[cat], match = b.value === DOG_DATA[pup][cat];
+        const b = m.built[cat], match = catSemanticKey(b.parent, cat) === catSemanticKey(pup, cat);
         return '<p style="font-size:.85rem;color:' + (match ? 'var(--sage-dark)' : 'var(--coral-dark)') + ';">' + esc(b.value) + (match ? ' ✓' : ' ✗') + '</p>';
       }).join('') + '</div>' +
       '<div style="text-align:center;">' + assetMarkup('dogs.case.' + pup, dogName(pup), 'asset--portrait') +
       '<p class="helper" style="font-weight:700;">The real ' + esc(dogName(pup)) + '</p>' +
       DP2_CATS.map(function(cat){ return '<p style="font-size:.85rem;">' + esc(DOG_DATA[pup][cat]) + '</p>'; }).join('') + '</div>' +
       '</div>';
-    const matchesAny = PARENT_KEYS.some(function(pk){ return DP2_CATS.every(function(c){ return DOG_DATA[pup][c] === DOG_DATA[pk][c]; }); });
+    const matchesAny = PARENT_KEYS.some(function(pk){ return DP2_CATS.every(function(c){ return catSemanticKey(pup, c) === catSemanticKey(pk, c); }); });
     h += '<div class="feedback feedback--yes" style="margin-top:12px;"><span class="feedback__icon">✓</span><span>' +
       (matchesAny
         ? esc(dogName(pup)) + ' happens to match one parent on every trait tracked here \u2014 still possible, just less common with three independent traits.'
@@ -4315,6 +4479,7 @@ function renderRepairSort(){
   mount.innerHTML = REPAIR_TILES.map(function(t){
     const cur = p[t.id];
     const textCls = cur === 'remove' ? 'is-removed' : (cur === 'revise' ? 'is-revised-original' : '');
+    const reasonVal = (state.convergence2.revisions[t.id] || {}).removeReason || '';
     return '<div class="statement-inline" style="padding:14px 0;border-bottom:1px solid var(--gray-200);">' +
       '<p class="' + (textCls ? textCls + ' ' : '') + '" style="margin:0 0 10px;font-size:.94rem;line-height:1.5;' +
         (cur === 'remove' ? 'text-decoration:line-through;color:var(--gray-400);' : (cur === 'revise' ? 'text-decoration:line-through;color:var(--gray-400);font-size:.86rem;' : '')) + '">' +
@@ -4323,8 +4488,16 @@ function renderRepairSort(){
         '<button type="button" class="chip' + (cur === 'keep' ? ' is-selected' : '') + '" data-repair-tile="' + t.id + '" data-repair-action="keep" aria-pressed="' + (cur === 'keep') + '">Keep</button>' +
         '<button type="button" class="chip' + (cur === 'revise' ? ' is-selected' : '') + '" data-repair-tile="' + t.id + '" data-repair-action="revise" aria-pressed="' + (cur === 'revise') + '">Revise</button>' +
         '<button type="button" class="chip' + (cur === 'remove' ? ' is-selected' : '') + '" data-repair-tile="' + t.id + '" data-repair-action="remove" aria-pressed="' + (cur === 'remove') + '">Remove</button>' +
-      '</div></div>';
+      '</div>' +
+      (cur === 'remove' ?
+        '<div style="margin-top:10px;">' +
+          '<label class="visually-hidden" for="reason-' + t.id + '">Why remove this statement?</label>' +
+          '<input type="text" class="j-input" id="reason-' + t.id + '" data-state="convergence2.revisions.' + t.id + '.removeReason" ' +
+          'data-reveal="renderRepairSort" placeholder="Our evidence doesn\u2019t support this because…" maxlength="200" value="' + esc(reasonVal) + '">' +
+        '</div>' : '') +
+      '</div>';
   }).join('') + '<div id="repairFeedback" style="margin-top:12px;"></div>';
+  bindTextInputs(mount);
   renderRepairFeedback(); renderRepairGuided(); renderCer();
 }
 function setRepairAction(tileId, action){
@@ -4400,6 +4573,11 @@ function revisePending(){
     const t = revising[i], r = state.convergence2.revisions[t.id] || {};
     if (!String(r.rewrite || '').trim()) return 'Write a revised version of every Revise statement.';
     if (!(r.evidence || []).length) return 'Attach Pattern Board evidence to every Revise statement.';
+  }
+  const removing = REPAIR_TILES.filter(function(t){ return state.convergence2.tilePlacements[t.id] === 'remove'; });
+  for (let i = 0; i < removing.length; i++){
+    const t = removing[i], r = state.convergence2.revisions[t.id] || {};
+    if (!String(r.removeReason || '').trim()) return 'Explain why every Remove statement isn\u2019t supported by your evidence.';
   }
   return '';
 }
@@ -4706,9 +4884,9 @@ function renderSignoff(){
   }
   mount.innerHTML =
     '<div class="frame-fill"><span>Our evidence supports the idea that</span>' +
-    '<input type="text" class="j-input" id="signoffA" data-state="transfer.signoffFrame.a" placeholder="…" maxlength="240">' +
+    '<input type="text" class="j-input" id="signoffA" data-state="transfer.signoffFrame.a" data-reveal="renderSeal" placeholder="…" maxlength="240">' +
     '<span>, but it cannot show</span>' +
-    '<input type="text" class="j-input" id="signoffB" data-state="transfer.signoffFrame.b" placeholder="…" maxlength="240"><span>.</span></div>' +
+    '<input type="text" class="j-input" id="signoffB" data-state="transfer.signoffFrame.b" data-reveal="renderSeal" placeholder="…" maxlength="240"><span>.</span></div>' +
     '<p class="save-flag" data-flag-for="signoffB">✓ Saved</p>';
   bindTextInputs(mount);
 }
@@ -5990,6 +6168,8 @@ document.addEventListener('click', function(e){
 
   /* Section 2 */
   if (t.closest('#btnWallSubmit')){ submitWall(); return; }
+  if ((n = d(t, 'data-corkwall-place'))){ onCorkwallZoneTap(n.dataset.corkwallPlace); return; }
+  if ((n = d(t, 'data-corkwall-note'))){ onCorkwallNoteTap(n.dataset.corkwallNote); return; }
   if ((n = d(t, 'data-difficult'))){
     state.visitorWall.difficultQuestion = n.dataset.difficult;
     logEvent('wall-difficult', { q:n.dataset.difficult });
@@ -5998,6 +6178,7 @@ document.addEventListener('click', function(e){
 
   /* Section 3 */
   if ((n = d(t, 'data-ec'))){ answerEvidenceCheck(n.dataset.ec, n.dataset.ecVal); return; }
+  if ((n = d(t, 'data-ec-nav'))){ navEvidenceCheck(n.dataset.ecNav); return; }
   if ((n = d(t, 'data-dp1'))){ chooseDp1(n.dataset.dp1); return; }
 
   /* Section 4 */
